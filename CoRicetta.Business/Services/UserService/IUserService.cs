@@ -1,4 +1,5 @@
 ﻿using CoRicetta.Data.Models;
+using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Users;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace CoRicetta.Business.Services.UserService
 {
     public interface IUserService
     {
-        IEnumerable<User> GetUsers();
         Task<string> Login(UserLoginViewModel model);
+        Task<PagingResultViewModel<ViewUser>> GetUsers(string token, PagingRequestViewModel request);
     }
 }

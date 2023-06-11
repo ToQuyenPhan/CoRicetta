@@ -34,7 +34,32 @@
           }
         }
       },
-      "Microsoft.CSharp/4.5.0": {},
+      "Microsoft.AspNetCore.JsonPatch/5.0.17": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "assemblyVersion": "5.0.17.0",
+            "fileVersion": "5.0.1722.21507"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/5.0.17": {
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "5.0.17",
+          "Newtonsoft.Json": "12.0.2",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
+            "assemblyVersion": "5.0.17.0",
+            "fileVersion": "5.0.1722.21507"
+          }
+        }
+      },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Data.SqlClient/2.0.1": {
         "dependencies": {
           "Microsoft.Data.SqlClient.SNI.runtime": "2.0.1",
@@ -179,12 +204,6 @@
       "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
         }
       },
       "Microsoft.Extensions.Caching.Memory/5.0.0": {
@@ -194,23 +213,11 @@
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "Microsoft.Extensions.Options": "5.0.0",
           "Microsoft.Extensions.Primitives": "5.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
         }
       },
       "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
         }
       },
       "Microsoft.Extensions.DependencyInjection/5.0.2": {
@@ -224,59 +231,26 @@
           }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {},
       "Microsoft.Extensions.Logging/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "Microsoft.Extensions.Options": "5.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.1/Microsoft.Extensions.Logging.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/5.0.0": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
+      "Microsoft.Extensions.Logging.Abstractions/5.0.0": {},
       "Microsoft.Extensions.Options/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.Primitives": "5.0.0"
-        },
-        "runtime": {
-          "lib/net5.0/Microsoft.Extensions.Options.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
         }
       },
-      "Microsoft.Extensions.Primitives/5.0.0": {
-        "runtime": {
-          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.51904"
-          }
-        }
-      },
+      "Microsoft.Extensions.Primitives/5.0.0": {},
       "Microsoft.Identity.Client/4.14.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
           "System.Net.NameResolution": "4.3.0",
           "System.Private.Uri": "4.3.2",
@@ -296,7 +270,7 @@
       "Microsoft.IdentityModel.JsonWebTokens/5.6.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "5.6.0",
-          "Newtonsoft.Json": "10.0.1"
+          "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
@@ -328,7 +302,7 @@
       "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.6.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols": "5.6.0",
-          "Newtonsoft.Json": "10.0.1",
+          "Newtonsoft.Json": "12.0.2",
           "System.IdentityModel.Tokens.Jwt": "5.6.0"
         },
         "runtime": {
@@ -341,7 +315,7 @@
       "Microsoft.IdentityModel.Tokens/5.6.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "5.6.0",
-          "Newtonsoft.Json": "10.0.1",
+          "Newtonsoft.Json": "12.0.2",
           "System.Security.Cryptography.Cng": "4.5.0"
         },
         "runtime": {
@@ -369,20 +343,6 @@
       "Microsoft.Win32.SystemEvents/4.7.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.700.19.56404"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.700.19.56404"
-          }
         }
       },
       "NETStandard.Library/1.6.1": {
@@ -433,39 +393,22 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.1": {
+      "Newtonsoft.Json/12.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.2.23222"
+          }
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
-          "System.Collections": "4.3.0",
-          "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.Numerics": "4.3.0",
-          "System.Runtime.Serialization.Formatters": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Text.Encoding.Extensions": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Threading.Tasks": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XDocument": "4.3.0",
-          "System.Xml.XmlDocument": "4.3.0"
+          "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
-          "lib/netstandard1.3/Newtonsoft.Json.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.1.20720"
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.2.22727"
           }
         }
       },
@@ -673,26 +616,6 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.Win32.SystemEvents": "4.7.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/System.Drawing.Common.dll": {
-            "assemblyVersion": "4.0.0.1",
-            "fileVersion": "4.6.26919.2"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "rid": "unix",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.700.19.56404"
-          },
-          "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.700.19.56404"
-          }
         }
       },
       "System.Dynamic.Runtime/4.3.0": {
@@ -742,7 +665,7 @@
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "5.6.0",
           "Microsoft.IdentityModel.Tokens": "5.6.0",
-          "Newtonsoft.Json": "10.0.1"
+          "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {
@@ -1237,12 +1160,6 @@
         "dependencies": {
           "System.Security.AccessControl": "4.7.0",
           "System.Windows.Extensions": "4.7.0"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Security.Permissions.dll": {
-            "assemblyVersion": "4.0.3.0",
-            "fileVersion": "4.700.19.56404"
-          }
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
@@ -1313,20 +1230,6 @@
       "System.Windows.Extensions/4.7.0": {
         "dependencies": {
           "System.Drawing.Common": "4.7.0"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/System.Windows.Extensions.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.56404"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.700.19.56404"
-          }
         }
       },
       "System.Xml.ReaderWriter/4.3.0": {
@@ -1401,6 +1304,7 @@
       },
       "CoRicetta.Data/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.17",
           "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.Proxies": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17"
@@ -1424,12 +1328,26 @@
       "path": "castle.core/4.4.1",
       "hashPath": "castle.core.4.4.1.nupkg.sha512"
     },
-    "Microsoft.CSharp/4.5.0": {
+    "Microsoft.AspNetCore.JsonPatch/5.0.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
-      "path": "microsoft.csharp/4.5.0",
-      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
+      "sha512": "sha512-7frxJ2Jda4O1cMEP8fJmXApo1+SH1Uh338lcBzOuBOVZ9vpidfEjvUUVDq6sqxqIYqv2d80iQO+4CZBuClS52g==",
+      "path": "microsoft.aspnetcore.jsonpatch/5.0.17",
+      "hashPath": "microsoft.aspnetcore.jsonpatch.5.0.17.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/5.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E6Y7BD5pnoP/H4j4tBE7Hyi06+X7YfXKQnq2okwQfo8l4dfKL+EIxZ2ToaQ+XnXXqwwxZ7ggbyp17fJeb5uxJg==",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/5.0.17",
+      "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.5.0.17.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Data.SqlClient/2.0.1": {
       "type": "package",
@@ -1634,12 +1552,19 @@
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/10.0.1": {
+    "Newtonsoft.Json/12.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ebWzW9j2nwxQeBo59As2TYn7nYr9BHicqqCwHOD1Vdo+50HBtLPuqdiCYJcLdTRknpYis/DSEOQz5KmZxwrIAg==",
-      "path": "newtonsoft.json/10.0.1",
-      "hashPath": "newtonsoft.json.10.0.1.nupkg.sha512"
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "path": "newtonsoft.json/12.0.2",
+      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
