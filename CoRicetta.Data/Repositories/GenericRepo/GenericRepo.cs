@@ -1,7 +1,10 @@
 ﻿using CoRicetta.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CoRicetta.Data.Repositories.GenericRepo
 {
@@ -15,10 +18,37 @@ namespace CoRicetta.Data.Repositories.GenericRepo
             this.context = context;
             _entities= context.Set<T>();
         }
+        public virtual async Task CreateAsync(T entity)
+        {
+            await _entities.AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
+
 
         public IEnumerable<T> GetAll()
         {
             return _entities.ToList();
+        }
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _entities.AsQueryable().AsNoTracking().FirstOrDefaultAsync(predicate);
+        }
+
+        public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[]? includes)
+        {
+            return await AsQueryableWithIncludes(includes).AsNoTracking().FirstOrDefaultAsync(predicate);
+        }
+        private IQueryable<T> AsQueryableWithIncludes(Expression<Func<T, object>>[]? includes)
+        {
+            var query = _entities.AsQueryable();
+            if (includes == null) return query;
+
+            foreach (var item in includes)
+            {
+                query = query.Include(item);
+            }
+
+            return query;
         }
     }
 }
