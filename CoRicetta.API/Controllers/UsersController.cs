@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CoRicetta.Data.Models;
 using CoRicetta.Business.Services.UserService;
 using Swashbuckle.AspNetCore.Annotations;
 using CoRicetta.Data.ViewModels.Users;

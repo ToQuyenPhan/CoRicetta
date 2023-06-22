@@ -7,20 +7,15 @@ using CoRicetta.Data.Repositories.UserRepo;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.UserService
 {
     public class UserService : IUserService
     {
-        private IGenericRepo<User> _genericRepo;
         private IUserRepo _userRepo;
         private DecodeToken _decodeToken;
         public UserService(IGenericRepo<User> genericRepo, IUserRepo userRepo) {
-            _genericRepo = genericRepo;
             _userRepo = userRepo;
             _decodeToken = new DecodeToken();
         }

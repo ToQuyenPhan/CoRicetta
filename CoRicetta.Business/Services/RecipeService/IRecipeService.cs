@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CoRicetta.Data.ViewModels.Paging;
+using CoRicetta.Data.ViewModels.Recipes;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.RecipeService
 {
     public interface IRecipeService
     {
+        Task<PagingResultViewModel<ViewRecipe>> GetRecipes(string token, PagingRequestViewModel request);
     }
 }
