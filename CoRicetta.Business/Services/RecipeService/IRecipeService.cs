@@ -6,6 +6,7 @@ namespace CoRicetta.Business.Services.RecipeService
 {
     public interface IRecipeService
     {
-        Task<PagingResultViewModel<ViewRecipe>> GetRecipes(string token, PagingRequestViewModel request);
+        Task<PagingResultViewModel<ViewRecipe>> GetRecipes(string token, RecipeFilterRequestModel request);
+        Task<ViewRecipe> getById(string token, int recipeId);
     }
 }

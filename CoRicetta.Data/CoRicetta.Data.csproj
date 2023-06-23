@@ -17,11 +17,8 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\Actions\" />
-    <Folder Include="ViewModels\Ingredients\" />
     <Folder Include="ViewModels\Menus\" />
-    <Folder Include="ViewModels\Steps\" />
     <Folder Include="ViewModels\Reports\" />
-    <Folder Include="ViewModels\Recipes\" />
   </ItemGroup>
 
 </Project>

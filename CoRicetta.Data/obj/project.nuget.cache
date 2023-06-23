@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7fc6H79BFNvW6/+OR15SmDQvSc8z1WEkN78SRaiFieusULxNxce1POL5vvg+1lmkGj6EpBLoVFHL0nuXMQl72Q==",
+  "dgSpecHash": "/KLLj79lEjSMOxiN7uUIYxxiq0ijmJAsIiOcmwie5h51vLdVVlEV7r3Mk6e92AzfeIpeWiOTgOZUC55Q3/uodQ==",
   "success": true,
-  "projectFilePath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+  "projectFilePath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lennovo\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\lennovo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -1,5 +1,7 @@
 ﻿using CoRicetta.Data.Enum;
 using CoRicetta.Data.ViewModels.Categories;
+using CoRicetta.Data.ViewModels.Ingredients;
+using CoRicetta.Data.ViewModels.Steps;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -29,5 +31,7 @@ namespace CoRicetta.Data.ViewModels.Recipes
         public RecipeStatus Status { get; set; }
 
         public List<ViewCategory> Categories { get; set; }
+        public List<ViewIngredient> Ingredients { get; set; }
+        public List<ViewStep> Steps { get; set; }
     }
 }

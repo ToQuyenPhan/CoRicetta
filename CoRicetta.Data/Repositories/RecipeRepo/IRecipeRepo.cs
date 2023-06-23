@@ -6,6 +6,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
 {
     public interface IRecipeRepo
     {
-        Task<PagingResultViewModel<ViewRecipe>> GetRecipes(PagingRequestViewModel request);
+        Task<PagingResultViewModel<ViewRecipe>> GetRecipes(RecipeFilterRequestModel request);
+        Task<ViewRecipe> GetRecipeById(int recipeId);
     }
 }

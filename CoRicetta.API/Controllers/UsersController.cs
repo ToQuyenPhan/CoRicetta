@@ -65,5 +65,25 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("signup")]
+        [SwaggerOperation(Summary = "Signup for CoRicetta")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Signup([FromBody] UserRegisterViewModel model)
+        {
+            try
+            {
+                var token = await _userService.SignUpAsync(model);
+                return Ok(token);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
