@@ -50,5 +50,21 @@ namespace CoRicetta.Data.Repositories.GenericRepo
 
             return query;
         }
+
+        public virtual async Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, params string[] navigationProperties)
+        {
+            List<T> list;
+            var query = _entities.AsQueryable();
+            foreach (string navigationProperty in navigationProperties)
+                query = query.Include(navigationProperty);
+
+            list = await query.Where(predicate).AsNoTracking().ToListAsync<T>();
+            return list;
+        }
+
+        public async Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[]? includes)
+        {
+            return await AsQueryableWithIncludes(includes).Where(predicate).AsNoTracking().ToListAsync();
+        }
     }
 }

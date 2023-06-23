@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {}
+    "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {}
   },
   "projects": {
-    "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
+    "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
+        "projectUniqueName": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
         "projectName": "CoRicetta.Business",
-        "projectPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Business\\obj\\",
+        "projectPath": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
+        "packagesPath": "C:\\Users\\Bat\\.nuget\\packages\\",
+        "outputPath": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
-                "projectPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
+              "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
+                "projectPath": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
               }
             }
           }
@@ -54,8 +53,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -64,24 +62,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.313\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
+    "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+        "projectUniqueName": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
         "projectName": "CoRicetta.Data",
-        "projectPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\obj\\",
+        "projectPath": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+        "packagesPath": "C:\\Users\\Bat\\.nuget\\packages\\",
+        "outputPath": "D:\\Ki8SE\\GroupProjectBE\\CoRicetta\\CoRicetta.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bat\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -90,7 +88,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -138,8 +135,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -148,7 +144,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.313\\RuntimeIdentifierGraph.json"
         }
       }
     }

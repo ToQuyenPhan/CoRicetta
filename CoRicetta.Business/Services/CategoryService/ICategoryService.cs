@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoRicetta.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace CoRicetta.Business.Services.CategoryService
 {
     public interface ICategoryService
     {
+        Task<IList<Category>> getAll();
     }
 }

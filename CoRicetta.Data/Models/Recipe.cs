@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -11,6 +12,7 @@ namespace CoRicetta.Data.Models
         {
             Actions = new HashSet<Action>();
             Steps = new HashSet<Step>();
+            CategoryDetails = new HashSet<CategoryDetail>();
         }
 
         public int Id { get; set; }
@@ -26,5 +28,7 @@ namespace CoRicetta.Data.Models
         public virtual User User { get; set; }
         public virtual ICollection<Action> Actions { get; set; }
         public virtual ICollection<Step> Steps { get; set; }
+        [NotMapped]
+        public virtual ICollection<CategoryDetail> CategoryDetails { get; set; }
     }
 }
