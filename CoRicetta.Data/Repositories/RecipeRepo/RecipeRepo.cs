@@ -97,6 +97,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
                           {
                               Id = i.Id,
                               IngredientName = i.IngredientName,
+                              Quantity = rd.Quantity,
                               Measurement = i.Measurement,
                               Calories = i.Calories
                           }).ToListAsync();

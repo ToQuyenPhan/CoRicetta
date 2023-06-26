@@ -13,12 +13,10 @@ namespace CoRicetta.Business.Services.RecipeService
     {
         private IRecipeRepo _recipeRepo;
         private DecodeToken _decodeToken;
-        private IGenericRepo<Recipe> _genericRepository;
 
-        public RecipeService(IRecipeRepo recipeRepo, IGenericRepo<Recipe> genericRepository)
+        public RecipeService(IRecipeRepo recipeRepo)
         {
             _recipeRepo = recipeRepo;
-            _genericRepository = genericRepository;
             _decodeToken = new DecodeToken();
         }
 
@@ -50,56 +48,6 @@ namespace CoRicetta.Business.Services.RecipeService
             }
             return recipes;
         }
-
-        //public async Task<IList<Recipe>> getWithFilters(int? userId, string? name, int? categoryId, Level? level)
-        //{
-        //    try
-        //    {
-        //        // var cats = CategoryDetail
-        //        if (level == Level.Easy)
-        //        {
-        //            var recipes = await _genericRepository.WhereAsync(r =>
-        //                (userId == 0 || r.UserId == userId) &&
-        //                (categoryId == 0 || r..Any(c => c.CategoryId == categoryId)) &&
-        //                (r.Level.Equals("1")),
-        //                "User");
-        //            return recipes.Where(r => (name == null || StringUtils.removeDiacritics(r.RecipeName).Contains(StringUtils.removeDiacritics(name)))).ToList();
-        //        }
-        //        else if (level == eLevel.NORMAL)
-        //        {
-        //            var recipes = await _recipeRepository.WhereAsync(r =>
-        //               (userId == 0 || r.UserId == userId) &&
-        //               (categoryId == 0 || r.CategoryDetails.Any(c => c.CategoryId == categoryId)) &&
-        //               (r.Level.Equals("2")),
-        //               "User");
-        //            return recipes.Where(r => (name == null || StringUtils.removeDiacritics(r.RecipeName).Contains(StringUtils.removeDiacritics(name)))).ToList();
-        //        }
-        //        else if (level == eLevel.HARD)
-        //        {
-        //            var recipes = await _recipeRepository.WhereAsync(r =>
-        //               (userId == 0 || r.UserId == userId) &&
-        //               (categoryId == 0 || r.CategoryDetails.Any(c => c.CategoryId == categoryId)) &&
-        //               (r.Level.Equals("3")),
-        //               "User");
-        //            return recipes.Where(r => (name == null || StringUtils.removeDiacritics(r.RecipeName).Contains(StringUtils.removeDiacritics(name)))).ToList();
-        //        }
-        //        else
-        //        {
-        //            var recipes = await _recipeRepository.WhereAsync(r =>
-        //               (userId == 0 || r.UserId == userId) &&
-        //               (categoryId == 0 || r.CategoryDetails.Any(c => c.CategoryId == categoryId)) /*&&
-        //               (level == eLevel.ALL)*/,
-        //               "User");
-        //            return recipes.Where(r => (name == null || StringUtils.removeDiacritics(r.RecipeName).Contains(StringUtils.removeDiacritics(name)))).ToList();
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        throw new ArgumentException("Something went wrong, please try again later!");
-        //    }
-        //}
 
         public async Task<ViewRecipe> getById(string token, int recipeId)
         {

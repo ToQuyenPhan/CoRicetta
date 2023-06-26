@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj": {}
+    "E:\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj": {
+    "E:\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
+        "projectUniqueName": "E:\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
         "projectName": "CoRicetta.API",
-        "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
+        "projectPath": "E:\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
         "packagesPath": "C:\\Users\\lennovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.API\\obj\\",
+        "outputPath": "E:\\CoRicetta\\CoRicetta.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lennovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
-                "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj"
+              "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
+                "projectPath": "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj"
               },
-              "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
-                "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
+              "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
+                "projectPath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
               }
             }
           }
@@ -105,14 +105,14 @@
         }
       }
     },
-    "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
+    "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
+        "projectUniqueName": "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
         "projectName": "CoRicetta.Business",
-        "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
+        "projectPath": "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
         "packagesPath": "C:\\Users\\lennovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\obj\\",
+        "outputPath": "E:\\CoRicetta\\CoRicetta.Business\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lennovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -129,8 +129,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
-                "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
+              "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
+                "projectPath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
               }
             }
           }
@@ -164,14 +164,14 @@
         }
       }
     },
-    "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
+    "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+        "projectUniqueName": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
         "projectName": "CoRicetta.Data",
-        "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+        "projectPath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
         "packagesPath": "C:\\Users\\lennovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\obj\\",
+        "outputPath": "E:\\CoRicetta\\CoRicetta.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lennovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

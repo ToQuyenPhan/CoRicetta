@@ -8,6 +8,7 @@ namespace CoRicetta.Data.ViewModels.Ingredients
 
         [JsonPropertyName("ingredient_name")]
         public string IngredientName { get; set; }
+        public int Quantity { get; set; }
         public string Measurement { get; set; }
         public int Calories { get; set; }
     }
