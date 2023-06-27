@@ -47,6 +47,21 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
             {
                 element.Categories = await GetCategoriesInRecipe(element.Id);
             }
+            if (request.CategoryId.HasValue)
+            {
+                List<ViewRecipe> temp = new List<ViewRecipe>();
+                foreach (var recipe in items)
+                {
+                    foreach(var category in recipe.Categories)
+                    {
+                        if(category.Id == request.CategoryId)
+                        {
+                            temp.Add(recipe);
+                        }
+                    }
+                }
+                items = temp;
+            }
             return (items.Count() > 0) ? new PagingResultViewModel<ViewRecipe>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
 

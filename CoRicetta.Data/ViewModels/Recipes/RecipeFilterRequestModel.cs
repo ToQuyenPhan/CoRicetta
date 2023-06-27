@@ -1,8 +1,6 @@
 ﻿using CoRicetta.Data.Enum;
 using CoRicetta.Data.ViewModels.Paging;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
-using System.Xml.Linq;
 
 namespace CoRicetta.Data.ViewModels.Recipes
 {
@@ -14,8 +12,8 @@ namespace CoRicetta.Data.ViewModels.Recipes
         [FromQuery(Name = "recipeName")]
         public string RecipeName { get; set; }
 
-        //[FromQuery(Name = "categoryId")]
-        //public int? CategoryId { get; set; }
+        [FromQuery(Name = "categoryId")]
+        public int? CategoryId { get; set; }
 
         [FromQuery(Name = "level")]
         public Level? Level { get; set; }
