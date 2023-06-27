@@ -1,19 +1,3 @@
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.deps.json
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.runtimeconfig.json
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.runtimeconfig.dev.json
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.dll
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.pdb
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.csproj.AssemblyReference.cache
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.AssemblyInfoInputs.cache
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.AssemblyInfo.cs
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.csproj.CoreCompileInputs.cache
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.dll
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\refint\CoRicetta.Data.dll
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.pdb
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.genruntimeconfig.cache
-C:\Users\lennovo\source\repos\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\ref\CoRicetta.Data.dll
-<<<<<<< HEAD
 E:\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.deps.json
 E:\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.runtimeconfig.json
 E:\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.runtimeconfig.dev.json
@@ -29,20 +13,3 @@ E:\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\refint\CoRicetta.Data.dll
 E:\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.pdb
 E:\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.genruntimeconfig.cache
 E:\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\ref\CoRicetta.Data.dll
-=======
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.deps.json
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.runtimeconfig.json
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.runtimeconfig.dev.json
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.dll
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\bin\Debug\net5.0\CoRicetta.Data.pdb
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.csproj.AssemblyReference.cache
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.GeneratedMSBuildEditorConfig.editorconfig
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.AssemblyInfoInputs.cache
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.AssemblyInfo.cs
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.csproj.CoreCompileInputs.cache
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.dll
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\refint\CoRicetta.Data.dll
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.pdb
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\CoRicetta.Data.genruntimeconfig.cache
-D:\Ki8SE\PRN231\GroupProject\BE\CoRicetta\CoRicetta.Data\obj\Debug\net5.0\ref\CoRicetta.Data.dll
->>>>>>> f8f4c95a7e8fa7561a696e1269d507761eb9aac5
