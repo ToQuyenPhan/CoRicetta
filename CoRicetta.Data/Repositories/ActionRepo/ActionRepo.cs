@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Data.Repositories.ActionRepo
@@ -22,11 +21,8 @@ namespace CoRicetta.Data.Repositories.ActionRepo
             var query = from a in context.Actions
                         join u in context.Users on a.UserId equals u.Id
                         join r in context.Recipes on a.RecipeId equals r.Id
-
-                        //where r.Status.Equals((int)RecipeStatus.Public)
                         select new { u, r, a };
             int totalCount = query.Count();
-            if (request.ActionId.HasValue) query = query.Where(selector => selector.a.Id.Equals(request.ActionId));
             if (request.UserId.HasValue) query = query.Where(selector => selector.a.UserId.Equals(request.UserId));
             if (request.RecipeId.HasValue) query = query.Where(selector => selector.a.RecipeId.Equals(request.RecipeId));
             if (request.Type.HasValue)
@@ -45,8 +41,6 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                         break;
 
                 }
-
-            //if (request.Level.HasValue) query = query.Where(selector => selector.r.Level.Equals(request.Level.ToString()));
             List<ViewAction> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
                                           .Select(selector => new ViewAction()
                                           {
@@ -57,6 +51,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                                               Type = ((ActionType)selector.a.Type),
                                               DateTime = selector.a.DateTime,
                                               Status = selector.a.Status,
+                                              Username = selector.u.UserName
                                           }
                                           ).ToListAsync();
 

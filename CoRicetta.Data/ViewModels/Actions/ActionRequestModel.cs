@@ -11,9 +11,6 @@ namespace CoRicetta.Data.ViewModels.Actions
 {
     public class ActionRequestModel : PagingRequestViewModel
     {
-        [FromQuery(Name = "actionId")]
-        public int? ActionId { get; set; }
-
         [FromQuery(Name = "userId")]
         public int? UserId { get; set; }
 
@@ -22,7 +19,5 @@ namespace CoRicetta.Data.ViewModels.Actions
 
         [FromQuery(Name = "Type")]
         public ActionType? Type { get; set; }
-
-
     }
 }

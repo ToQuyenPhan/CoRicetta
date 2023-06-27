@@ -12,17 +12,20 @@ namespace CoRicetta.Data.ViewModels.Actions
     public class ViewAction
     {
         public int Id { get; set; }
-        [JsonPropertyName("user_it")]
+
+        [JsonPropertyName("user_id")]
         public int UserId { get; set; }
-        [JsonPropertyName("recipe_it")]
+
+        [JsonPropertyName("recipe_id")]
         public int RecipeId { get; set; }
-        [JsonPropertyName("type")]
         public ActionType Type { get; set; }
         public string Content { get; set; }
+
+        [JsonPropertyName("date_time")]
         public DateTime DateTime { get; set; }
         public int Status { get; set; }
 
-        public virtual Recipe Recipe { get; set; }
-        public virtual User User { get; set; }
+        [JsonPropertyName("username")]
+        public string Username { get; set; }
     }
 }
