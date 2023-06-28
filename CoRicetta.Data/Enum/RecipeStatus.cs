@@ -1,6 +1,6 @@
 ﻿namespace CoRicetta.Data.Enum
 {
-    public enum MenuStatus
+    public enum RecipeStatus
     {
         Private,
         Public
