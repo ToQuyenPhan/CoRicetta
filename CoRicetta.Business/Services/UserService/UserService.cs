@@ -7,21 +7,19 @@ using CoRicetta.Data.Repositories.UserRepo;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.UserService
 {
     public class UserService : IUserService
     {
-        private IGenericRepo<User> _genericRepo;
         private IUserRepo _userRepo;
         private DecodeToken _decodeToken;
+        private IGenericRepo<User> _genericRepo;
+
         public UserService(IGenericRepo<User> genericRepo, IUserRepo userRepo) {
-            _genericRepo = genericRepo;
             _userRepo = userRepo;
+            _genericRepo = genericRepo;
             _decodeToken = new DecodeToken();
         }
 
@@ -65,6 +63,34 @@ namespace CoRicetta.Business.Services.UserService
             PagingResultViewModel<ViewUser> users = await _userRepo.GetUsers(request);
             if (users.Items == null) throw new NullReferenceException("Not found any users");
             return users;
+        }
+
+        public async Task<string> SignUpAsync(UserRegisterViewModel model)
+        {
+            try
+            {
+                var user = await _genericRepo.FirstOrDefaultAsync(u => u.Email == model.Email);
+                if (user != null)
+                {
+                    throw new ArgumentException("Email already exists, please sign in instead.");
+                }
+                var newUser = new User
+                {
+                    UserName = model.Username,
+                    Email = model.Email,
+                    Password = model.Password,
+                    PhoneNumber = model.PhoneNumber,
+                    Role = UserRole.USER.ToString(),
+                    Status = (int)UserStatus.Active
+                };
+                await _genericRepo.CreateAsync(newUser);
+                return newUser.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new ArgumentException("Something went wrong, please try again later!");
+            }
         }
     }
 }

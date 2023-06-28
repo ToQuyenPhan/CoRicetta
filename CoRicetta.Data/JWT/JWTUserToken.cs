@@ -17,8 +17,8 @@ namespace CoRicetta.Data.JWT
         {
             JwtSecurityToken tokenUser = null;
             tokenUser = new JwtSecurityToken(
-                issuer: "Test",
-                audience: "Test",
+                issuer: "https://coricetta.com",
+                audience: "https://coricetta.com",
                 claims: new[] {
                  //Id
                  new Claim("Id", user.Id.ToString()),

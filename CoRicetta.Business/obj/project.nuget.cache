@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mjau77wfwz1U0xb9AViLSaQ2iEY1SfJYZ+SH8BA6zJXtiB5Waf1U9wZJgdjLuh/kQ3VJ7wQZ0fAeUjrrCeRtiw==",
+  "dgSpecHash": "OgfaPHl0oOIqXr65SZBloHY2Kb3nsQHl/oM2i1o0X6gv8FwApLSxxlYUbklfrh0uGOf4VI5r/5keVS8/4W4KYA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
+  "projectFilePath": "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lennovo\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\lennovo\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.17\\microsoft.aspnetcore.jsonpatch.5.0.17.nupkg.sha512",

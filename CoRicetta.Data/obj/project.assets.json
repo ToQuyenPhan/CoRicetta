@@ -7807,11 +7807,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+      "projectUniqueName": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
       "projectName": "CoRicetta.Data",
-      "projectPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+      "projectPath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
       "packagesPath": "C:\\Users\\lennovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lennovo\\source\\repos\\CoRicetta\\CoRicetta.Data\\obj\\",
+      "outputPath": "E:\\CoRicetta\\CoRicetta.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lennovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
