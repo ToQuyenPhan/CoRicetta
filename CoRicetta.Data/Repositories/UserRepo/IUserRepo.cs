@@ -9,5 +9,6 @@ namespace CoRicetta.Data.Repositories.UserRepo
         Task<UserTokenViewModel> GetByEmailAndPassword(string email, string password);
         Task<bool> CheckEmailAndPassword(string email, string password);
         Task<PagingResultViewModel<ViewUser>> GetUsers(PagingRequestViewModel request);
+        Task<ViewUser> GetUserById(int userId);
     }
 }

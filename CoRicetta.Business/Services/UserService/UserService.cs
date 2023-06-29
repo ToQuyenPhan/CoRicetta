@@ -17,7 +17,8 @@ namespace CoRicetta.Business.Services.UserService
         private DecodeToken _decodeToken;
         private IGenericRepo<User> _genericRepo;
 
-        public UserService(IGenericRepo<User> genericRepo, IUserRepo userRepo) {
+        public UserService(IGenericRepo<User> genericRepo, IUserRepo userRepo)
+        {
             _userRepo = userRepo;
             _genericRepo = genericRepo;
             _decodeToken = new DecodeToken();
@@ -30,10 +31,10 @@ namespace CoRicetta.Business.Services.UserService
             try
             {
                 bool check = await _userRepo.CheckEmailAndPassword(model.Email, model.Password);
-                if(check)
+                if (check)
                 {
                     UserTokenViewModel user = await _userRepo.GetByEmailAndPassword(model.Email, model.Password);
-                    if(user.Status == UserStatus.InActive)
+                    if (user.Status == UserStatus.InActive)
                     {
                         throw new ArgumentException("Your account is inactive!");
                     }
@@ -92,5 +93,28 @@ namespace CoRicetta.Business.Services.UserService
                 throw new ArgumentException("Something went wrong, please try again later!");
             }
         }
+
+        public async Task<ViewUser> GetUserById(string token, int userId)
+        {
+            try
+            {
+                string role = _decodeToken.DecodeText(token, "Role");
+                if (role.Equals("ADMIN"))
+                {
+                    throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+                }
+                var recipe = await _userRepo.GetUserById(userId);
+                if (recipe == null)
+                {
+                    throw new ArgumentException("The user does not exist.");
+                }
+                return recipe;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Something went wrong, please try again later!");
+            }
+        }
     }
 }
+

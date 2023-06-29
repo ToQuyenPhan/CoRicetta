@@ -53,5 +53,24 @@ namespace CoRicetta.Data.Repositories.UserRepo
                                           ).ToListAsync();
             return (items.Count() > 0) ? new PagingResultViewModel<ViewUser>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
+
+        public async Task<ViewUser> GetUserById(int userId)
+        {
+            var query = from u in context.Users 
+                        where u.Id == userId
+                        select u;
+            ViewUser item = await query.Select(selector => new ViewUser()
+            {
+                Id = selector.Id,
+                UserName = selector.UserName,
+                Password = selector.Password,
+                Email = selector.Email,
+                PhoneNumber = (!string.IsNullOrEmpty(selector.PhoneNumber)) ? selector.PhoneNumber : "",
+                Role = selector.Role,
+                Status = (UserStatus)selector.Status,
+            }
+                                          ).FirstOrDefaultAsync();
+             return item;
+        }
     }
 }
