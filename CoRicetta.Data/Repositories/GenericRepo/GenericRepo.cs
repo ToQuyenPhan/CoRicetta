@@ -30,6 +30,12 @@ namespace CoRicetta.Data.Repositories.GenericRepo
             await context.SaveChangesAsync();
         }
 
+        public async Task CreateRangeAsync(List<T> entities)
+        {
+            await context.AddRangeAsync(entities);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
         {
             return await _entities.AsQueryable().AsNoTracking().FirstOrDefaultAsync(predicate);
@@ -59,9 +65,8 @@ namespace CoRicetta.Data.Repositories.GenericRepo
             var query = _entities.AsQueryable();
             foreach (string navigationProperty in navigationProperties)
                 query = query.Include(navigationProperty);
-
             list = await query.Where(predicate).AsNoTracking().ToListAsync<T>();
-            return list;
+            return list;    
         }
 
         public async Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[]? includes)

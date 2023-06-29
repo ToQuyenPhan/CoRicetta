@@ -7,10 +7,12 @@ using CoRicetta.Business.Services.StepService;
 using CoRicetta.Business.Services.UserService;
 using CoRicetta.Data.Context;
 using CoRicetta.Data.Repositories.ActionRepo;
+using CoRicetta.Data.Repositories.CategoryDetailRepo;
 using CoRicetta.Data.Repositories.CategoryRepo;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.Repositories.IngredientRepo;
 using CoRicetta.Data.Repositories.MenuRepo;
+using CoRicetta.Data.Repositories.RecipeDetailRepo;
 using CoRicetta.Data.Repositories.RecipeRepo;
 using CoRicetta.Data.Repositories.StepRepo;
 using CoRicetta.Data.Repositories.UserRepo;
@@ -86,6 +88,8 @@ namespace CoRicetta.API
             services.AddTransient<IMenuRepo, MenuRepo>();
             services.AddTransient<IRecipeRepo, RecipeRepo>();
             services.AddTransient<IStepRepo, StepRepo>();
+            services.AddTransient<IRecipeDetailRepo, RecipeDetailRepo>();
+            services.AddTransient<ICategoryDetailRepo, CategoryDetailRepo>();
 
             services.AddCors(opt =>
             {

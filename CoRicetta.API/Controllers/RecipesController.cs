@@ -66,5 +66,25 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("create")]
+        [SwaggerOperation(Summary = "Create a recipe in CoRicetta")]
+        public async Task<ActionResult> CreateRecipe([FromBody]RecipeFormViewModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _recipeService.CreateRecipe(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

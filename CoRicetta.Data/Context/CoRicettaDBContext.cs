@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using CoRicetta.Data.Models;
 using Microsoft.Extensions.Configuration;
 
@@ -85,8 +83,7 @@ namespace CoRicetta.Data.Context
 
             modelBuilder.Entity<CategoryDetail>(entity =>
             {
-                entity.HasNoKey();
-
+                entity.HasKey(e => new { e.RecipeId, e.CategoryId }).HasName("PK__Recipe__Category");
                 entity.ToTable("CategoryDetail");
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
@@ -190,8 +187,7 @@ namespace CoRicetta.Data.Context
 
             modelBuilder.Entity<RecipeDetail>(entity =>
             {
-                entity.HasNoKey();
-
+                entity.HasKey(e => new { e.RecipeId, e.IngredientId }).HasName("PK__Recipe__Ingridient");
                 entity.ToTable("RecipeDetail");
 
                 entity.Property(e => e.IngredientId).HasColumnName("IngredientID");

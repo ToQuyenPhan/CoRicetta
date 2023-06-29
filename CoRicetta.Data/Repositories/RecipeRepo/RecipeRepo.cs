@@ -91,6 +91,23 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
             return item;
         }
 
+        public async Task<int> CreateRecipe(RecipeFormViewModel model, int userId)
+        {
+            var recipe = new Recipe
+            {
+                UserId = userId,
+                RecipeName = model.RecipeName,
+                Level = model.Level.ToString(),
+                PrepareTime = model.PrepareTime,
+                CookTime = model.CookTime,
+                Image = model.Image,
+                Description = model.Description,
+                Status = model.Status
+            };
+            await CreateAsync(recipe);
+            return recipe.Id;
+        }
+
         private async Task<List<ViewCategory>> GetCategoriesInRecipe(int recipeId)
         {
             return await (from cd in context.CategoryDetails

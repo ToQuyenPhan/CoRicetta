@@ -8,5 +8,6 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
     {
         Task<PagingResultViewModel<ViewRecipe>> GetRecipes(RecipeFilterRequestModel request);
         Task<ViewRecipe> GetRecipeById(int recipeId);
+        Task<int> CreateRecipe(RecipeFormViewModel model, int userId);
     }
 }
