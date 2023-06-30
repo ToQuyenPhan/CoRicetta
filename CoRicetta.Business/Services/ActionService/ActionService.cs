@@ -29,7 +29,6 @@ namespace CoRicetta.Business.Services.ActionService
             }
             PagingResultViewModel<ViewAction> actions = await _recipeRepo.GetActions(request);
             if (actions.Items == null) throw new NullReferenceException("Not found any action");
-
             return actions;
         }
     }

@@ -21,26 +21,12 @@ namespace CoRicetta.Data.Repositories.ActionRepo
             var query = from a in context.Actions
                         join u in context.Users on a.UserId equals u.Id
                         join r in context.Recipes on a.RecipeId equals r.Id
-                        select new { u, r, a };
-            int totalCount = query.Count();
+                        select new { u, r, a };        
             if (request.UserId.HasValue) query = query.Where(selector => selector.a.UserId.Equals(request.UserId));
             if (request.RecipeId.HasValue) query = query.Where(selector => selector.a.RecipeId.Equals(request.RecipeId));
             if (request.Type.HasValue)
-                switch (request.Type.ToString())
-                {
-                    case "Comment":
-                        query = query.Where(selector => selector.a.Type.Equals((int)request.Type));
-                        break;
-                    case "Like":
-                        query = query.Where(selector => selector.a.Type.Equals((int)request.Type));
-                        break;
-                    case "Save":
-                        query = query.Where(selector => selector.a.Type.Equals((int)request.Type));
-                        break;
-                    default:
-                        break;
-
-                }
+                query = query.Where(selector => selector.a.Type.Equals((int)request.Type));
+            int totalCount = query.Count();
             List<ViewAction> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
                                           .Select(selector => new ViewAction()
                                           {
