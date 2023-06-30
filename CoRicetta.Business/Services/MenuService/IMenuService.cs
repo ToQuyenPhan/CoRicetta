@@ -1,4 +1,5 @@
 ﻿using CoRicetta.Data.ViewModels.Menus;
+using CoRicetta.Data.ViewModels.Paging;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.MenuService
@@ -6,5 +7,6 @@ namespace CoRicetta.Business.Services.MenuService
     public interface IMenuService
     {
         Task CreateMenu(MenuFormViewModel model, string token);
+        Task<PagingResultViewModel<ViewMenu>> GetWithFilters(string token, MenuFilterRequestModel request);
     }
 }

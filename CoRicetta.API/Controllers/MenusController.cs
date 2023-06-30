@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using CoRicetta.Business.Services.MenuService;
 using Swashbuckle.AspNetCore.Annotations;
 using CoRicetta.Data.ViewModels.Menus;
+using System.Collections.Generic;
 
 namespace CoRicetta.API.Controllers
 {
@@ -34,6 +35,30 @@ namespace CoRicetta.API.Controllers
             }catch(ArgumentException ex)
             {
                 return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("all")]
+        [SwaggerOperation(Summary = "Get all menus of CoRicetta")]
+        public async Task<IActionResult> GetWithFilters([FromQuery] MenuFilterRequestModel request)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var users = await _menuService.GetWithFilters(token, request);
+                return Ok(users);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
             }
             catch (Exception ex)
             {

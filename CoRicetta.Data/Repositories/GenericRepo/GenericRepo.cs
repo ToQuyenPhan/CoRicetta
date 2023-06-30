@@ -46,19 +46,6 @@ namespace CoRicetta.Data.Repositories.GenericRepo
             return await AsQueryableWithIncludes(includes).AsNoTracking().FirstOrDefaultAsync(predicate);
         }
 
-        private IQueryable<T> AsQueryableWithIncludes(Expression<Func<T, object>>[]? includes)
-        {
-            var query = _entities.AsQueryable();
-            if (includes == null) return query;
-
-            foreach (var item in includes)
-            {
-                query = query.Include(item);
-            }
-
-            return query;
-        }
-
         public virtual async Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, params string[] navigationProperties)
         {
             List<T> list;
@@ -72,6 +59,19 @@ namespace CoRicetta.Data.Repositories.GenericRepo
         public async Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[]? includes)
         {
             return await AsQueryableWithIncludes(includes).Where(predicate).AsNoTracking().ToListAsync();
+        }
+
+        private IQueryable<T> AsQueryableWithIncludes(Expression<Func<T, object>>[]? includes)
+        {
+            var query = _entities.AsQueryable();
+            if (includes == null) return query;
+
+            foreach (var item in includes)
+            {
+                query = query.Include(item);
+            }
+
+            return query;
         }
     }
 }
