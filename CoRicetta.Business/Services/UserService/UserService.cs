@@ -70,7 +70,7 @@ namespace CoRicetta.Business.Services.UserService
         {
             try
             {
-                var user = await _genericRepo.FirstOrDefaultAsync(u => u.Email == model.Email);
+                var user = await _genericRepo.FirstOrDefaultAsync(u => u.Email.Equals(model.Email));
                 if (user != null)
                 {
                     throw new ArgumentException("Email already exists, please sign in instead.");
@@ -85,7 +85,15 @@ namespace CoRicetta.Business.Services.UserService
                     Status = (int)UserStatus.Active
                 };
                 await _genericRepo.CreateAsync(newUser);
-                return newUser.ToString();
+                var userToken = new UserTokenViewModel
+                {
+                    Id = newUser.Id,
+                    UserName = model.Username,
+                    Email = model.Email,
+                    Role= newUser.Role,
+                    Status = UserStatus.Active
+                };
+                return JWTUserToken.GenerateJWTTokenUser(userToken);
             }
             catch (Exception ex)
             {
