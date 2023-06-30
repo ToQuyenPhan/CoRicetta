@@ -68,5 +68,11 @@ namespace CoRicetta.Data.Repositories.GenericRepo
         {
             return await AsQueryableWithIncludes(includes).Where(predicate).AsNoTracking().ToListAsync();
         }
+
+        public virtual async Task UpdateAsync(T updated)
+        {
+            context.Attach(updated).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+        }
     }
 }
