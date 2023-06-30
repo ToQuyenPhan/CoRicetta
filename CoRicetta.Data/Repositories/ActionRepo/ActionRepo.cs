@@ -1,10 +1,10 @@
 ﻿using CoRicetta.Data.Context;
 using CoRicetta.Data.Enum;
+using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.ViewModels.Actions;
 using CoRicetta.Data.ViewModels.Paging;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,5 +43,19 @@ namespace CoRicetta.Data.Repositories.ActionRepo
 
             return (items.Count() > 0) ? new PagingResultViewModel<ViewAction>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
+        public void DeleteAction(int actionId)
+        {
+
+            Action action = context.Actions.FindAsync(actionId).Result;
+            if (action != null)
+            {
+                action.Status = 0;
+                context.SaveChangesAsync();
+                /*context.Attach(action).State = EntityState.Deleted;
+                context.SaveChangesAsync();*/
+            }
+
+        }
+
     }
 }
