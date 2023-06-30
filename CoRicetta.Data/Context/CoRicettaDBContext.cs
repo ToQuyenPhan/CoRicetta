@@ -137,7 +137,7 @@ namespace CoRicetta.Data.Context
 
             modelBuilder.Entity<MenuDetail>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.MenuId, e.RecipeId }).HasName("PK__Menu__Recipe");
 
                 entity.ToTable("MenuDetail");
 

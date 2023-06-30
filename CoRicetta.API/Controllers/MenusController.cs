@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CoRicetta.Data.Context;
-using CoRicetta.Data.Models;
 using CoRicetta.Business.Services.MenuService;
+using Swashbuckle.AspNetCore.Annotations;
+using CoRicetta.Data.ViewModels.Menus;
 
 namespace CoRicetta.API.Controllers
 {
@@ -20,6 +16,29 @@ namespace CoRicetta.API.Controllers
         public MenusController(IMenuService menuService)
         {
             _menuService = menuService;
+        }
+
+        [HttpPost("create")]
+        [SwaggerOperation(Summary = "Create a menu in CoRicetta")]
+        public async Task<ActionResult> CreateMenu([FromBody] MenuFormViewModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _menuService.CreateMenu(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }catch(ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

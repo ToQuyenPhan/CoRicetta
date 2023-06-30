@@ -11,6 +11,7 @@ using CoRicetta.Data.Repositories.CategoryDetailRepo;
 using CoRicetta.Data.Repositories.CategoryRepo;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.Repositories.IngredientRepo;
+using CoRicetta.Data.Repositories.MenuDetailRepo;
 using CoRicetta.Data.Repositories.MenuRepo;
 using CoRicetta.Data.Repositories.RecipeDetailRepo;
 using CoRicetta.Data.Repositories.RecipeRepo;
@@ -85,6 +86,7 @@ namespace CoRicetta.API
             services.AddTransient<IActionRepo, ActionRepo>();
             services.AddTransient<ICategoryRepo, CategoryRepo>();
             services.AddTransient<IIngredientRepo, IngredientRepo>();
+            services.AddTransient<IMenuDetailRepo, MenuDetailRepo>();
             services.AddTransient<IMenuRepo, MenuRepo>();
             services.AddTransient<IRecipeRepo, RecipeRepo>();
             services.AddTransient<IStepRepo, StepRepo>();
