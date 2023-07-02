@@ -31,15 +31,7 @@ namespace CoRicetta.Business.Services.MenuService
                 throw new UnauthorizedAccessException("You do not have permission to access this resource!");
             }
             int userId = _decodeToken.Decode(token, "Id");
-            if (model.Recipes.Any())
-            {
-                int menuId = await _menuRepo.CreateMenu(model, userId);
-                await _menuDetailRepo.CreateMenuDetail(model, menuId);
-            }
-            else
-            {
-                throw new ArgumentException("You need to add a recipe at least!");
-            }
+            await _menuRepo.CreateMenu(model, userId);
         }
 
         public async Task<PagingResultViewModel<ViewMenu>> GetWithFilters(string token, MenuFilterRequestModel request)

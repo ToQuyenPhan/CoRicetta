@@ -19,7 +19,7 @@ namespace CoRicetta.Data.Repositories.MenuRepo
         {
         }
 
-        public async Task<int> CreateMenu(MenuFormViewModel model, int userId)
+        public async Task CreateMenu(MenuFormViewModel model, int userId)
         {
             var menu = new Menu
             {
@@ -29,13 +29,13 @@ namespace CoRicetta.Data.Repositories.MenuRepo
                 Status = (int)model.Status
             };
             await CreateAsync(menu);
-            return menu.Id;
         }
 
         public async Task<PagingResultViewModel<ViewMenu>> GetWithFilters(MenuFilterRequestModel request)
         {
 
-            var query = from m in context.Menus where m.Status.Equals((int)MenuStatus.Public) select m;
+            var query = from m in context.Menus select m;
+            if (request.MenuStatus.HasValue) query.Where(selector => selector.Status.Equals(request.MenuStatus));
             if (request.UserId.HasValue) query = query.Where(selector => selector.UserId.Equals(request.UserId));
             if (!string.IsNullOrEmpty(request.MenuName)) query = query.Where(selector => selector.MenuName.Contains(request.MenuName));
             int totalCount = query.Count();
@@ -46,7 +46,7 @@ namespace CoRicetta.Data.Repositories.MenuRepo
                                               UserId = selector.UserId,
                                               MenuName = selector.MenuName,
                                               Description = selector.Description,
-                                              Status = (MenuStatus)selector.Status
+                                              Status = (selector.Status.Equals(1)) ? "Public" : "Private"
                                           }
                                           ).ToListAsync();
             return (items.Count() > 0) ? new PagingResultViewModel<ViewMenu>(items, totalCount, request.CurrentPage, request.PageSize) : null;

@@ -10,5 +10,8 @@ namespace CoRicetta.Data.ViewModels.Menus
 
         [FromQuery(Name = "menuName")]
         public string MenuName { get; set; }
+
+        [FromQuery(Name = "menuStatus")]
+        public int? MenuStatus { get; set; }
     }
 }

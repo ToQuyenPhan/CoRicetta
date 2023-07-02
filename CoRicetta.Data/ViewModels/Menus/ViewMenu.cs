@@ -14,7 +14,7 @@ namespace CoRicetta.Data.ViewModels.Menus
         [JsonPropertyName("menu_name")]
         public string MenuName { get; set; }
         public string Description { get; set; }
-        public MenuStatus Status { get; set; }
+        public string Status { get; set; }
 
     }
 }

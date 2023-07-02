@@ -16,15 +16,6 @@ namespace CoRicetta.Data.Repositories.MenuDetailRepo
         public async Task CreateMenuDetail(MenuFormViewModel model, int menuId)
         {
             List<MenuDetail> menuDetails = new List<MenuDetail>();
-            foreach(var recipe in model.Recipes)
-            {
-                var menuDetail = new MenuDetail
-                {
-                    MenuId = menuId,
-                    RecipeId = recipe
-                };
-                menuDetails.Add(menuDetail);
-            }
             await CreateRangeAsync(menuDetails);
         }
     }

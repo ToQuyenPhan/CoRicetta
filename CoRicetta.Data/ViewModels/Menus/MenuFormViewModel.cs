@@ -7,6 +7,5 @@ namespace CoRicetta.Data.ViewModels.Menus
         public string MenuName { get; set; }
         public string Description { get; set; }
         public MenuStatus Status { get; set; }
-        public int[] Recipes { get; set; }
     }
 }
