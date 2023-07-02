@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CoRicetta.Data.Models;
 using CoRicetta.Business.Services.UserService;
 using Swashbuckle.AspNetCore.Annotations;
 using CoRicetta.Data.ViewModels.Users;
@@ -66,21 +65,22 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("Signup")]
-        [SwaggerOperation(Summary = "Sign Up for CoRicetta")]
+
+        [HttpPost("signup")]
+        [SwaggerOperation(Summary = "Signup for CoRicetta")]
         [AllowAnonymous]
         public async Task<IActionResult> Signup([FromBody] UserRegisterViewModel model)
         {
-           try
+            try
             {
                 var token = await _userService.SignUpAsync(model);
                 return Ok(token);
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

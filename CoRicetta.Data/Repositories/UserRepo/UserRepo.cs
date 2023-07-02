@@ -5,10 +5,8 @@ using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Users;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Data.Repositories.UserRepo
@@ -53,7 +51,6 @@ namespace CoRicetta.Data.Repositories.UserRepo
                                               Status = (UserStatus)selector.Status,
                                           }
                                           ).ToListAsync();
-
             return (items.Count() > 0) ? new PagingResultViewModel<ViewUser>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
     }
