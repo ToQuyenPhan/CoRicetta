@@ -31,5 +31,14 @@ namespace CoRicetta.Business.Services.ActionService
             if (actions.Items == null) throw new NullReferenceException("Not found any action");
             return actions;
         }
+        public void DeleteAction(string token, int actionId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            _recipeRepo.DeleteAction(actionId);
+        }
     }
 }
