@@ -42,5 +42,29 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete]
+        [SwaggerOperation(Summary = "Delete action by id of CoRicetta")]
+        public async Task<IActionResult> DeleteAction(int actionId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                _actionService.DeleteAction(token, actionId);
+                return Ok("Deleted");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
