@@ -1,4 +1,8 @@
-﻿using CoRicetta.Data.Repositories.MenuRepo;
+﻿using CoRicetta.Business.Utils;
+using CoRicetta.Data.Repositories.MenuDetailRepo;
+using CoRicetta.Data.Repositories.MenuRepo;
+using CoRicetta.Data.ViewModels.Menus;
+using CoRicetta.Data.ViewModels.Paging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +15,6 @@ namespace CoRicetta.Business.Services.MenuService
     {
         private IMenuRepo _menuRepo;
         private IMenuDetailRepo _menuDetailRepo;
-        private DecodeToken _decodeToken;
         private DecodeToken _decodeToken;
 
         public MenuService(IMenuRepo menuRepo, IMenuDetailRepo menuDetailRepo)
@@ -45,8 +48,8 @@ namespace CoRicetta.Business.Services.MenuService
             PagingResultViewModel<ViewMenu> menus = await _menuRepo.getAllMenus(request);
             if (menus.Items == null) throw new NullReferenceException("Not found any menus");
             return menus;
-            _menuDetailRepo = menuDetailRepo;
-            _decodeToken = new DecodeToken();
+            //_menuDetailRepo = menuDetailRepo;
+            //_decodeToken = new DecodeToken();
         }
 
         public async Task CreateMenu(MenuFormViewModel model, string token)
