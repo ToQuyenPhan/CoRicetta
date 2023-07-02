@@ -23,35 +23,6 @@ namespace CoRicetta.Business.Services.MenuService
             _decodeToken = new DecodeToken();
         }
 
-        public async Task<PagingResultViewModel<ViewMenu>> getWithFilters(string token, MenuFilterRequestModel request)
-        {
-            string role = _decodeToken.DecodeText(token, "Role");
-            int id = Int32.Parse(_decodeToken.DecodeText(token, "Id"));
-            if (role.Equals("ADMIN"))
-            {
-                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
-            }
-
-            PagingResultViewModel<ViewMenu> menus = await _menuRepo.getWithFilters(request, id);
-            if (menus.Items == null) throw new NullReferenceException("Not found any menus");
-            return menus;
-        }
-        public async Task<PagingResultViewModel<ViewMenu>> getAllMenus(string token, MenuFilterRequestModel request)
-        {
-            string role = _decodeToken.DecodeText(token, "Role");
-            int id = Int32.Parse(_decodeToken.DecodeText(token, "Id"));
-            if (role.Equals("ADMIN"))
-            {
-                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
-            }
-
-            PagingResultViewModel<ViewMenu> menus = await _menuRepo.getAllMenus(request);
-            if (menus.Items == null) throw new NullReferenceException("Not found any menus");
-            return menus;
-            //_menuDetailRepo = menuDetailRepo;
-            //_decodeToken = new DecodeToken();
-        }
-
         public async Task CreateMenu(MenuFormViewModel model, string token)
         {
             string role = _decodeToken.DecodeText(token, "Role");

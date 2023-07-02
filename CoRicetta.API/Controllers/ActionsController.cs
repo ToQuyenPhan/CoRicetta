@@ -42,8 +42,9 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-         [HttpDelete]
-        [SwaggerOperation(Summary = "Delete action by id of CoRicetta")]
+
+        [HttpDelete]
+        [SwaggerOperation(Summary = "Delete an action by id of CoRicetta")]
         public async Task<IActionResult> DeleteAction(int actionId)
         {
             try

@@ -12,6 +12,5 @@ namespace CoRicetta.Data.Repositories.ActionRepo
     {
         Task<PagingResultViewModel<ViewAction>> GetActions(ActionRequestModel request);
         public void DeleteAction(int actionId);
-    
-}
+    }
 }

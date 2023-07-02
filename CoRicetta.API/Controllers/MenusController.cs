@@ -66,29 +66,5 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpGet("allMenus")]
-        [SwaggerOperation(Summary = "Get all menus")]
-        public async Task<IActionResult> GetAllMenus([FromQuery] MenuFilterRequestModel request)
-        {
-            try
-            {
-                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var users = await _menuService.getAllMenus(token, request);
-                return Ok(users);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(ex.Message);
-            }
-            catch (NullReferenceException)
-            {
-                return Ok(new List<object>());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
     }
 }

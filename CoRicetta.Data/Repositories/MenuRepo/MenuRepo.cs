@@ -51,48 +51,5 @@ namespace CoRicetta.Data.Repositories.MenuRepo
                                           ).ToListAsync();
             return (items.Count() > 0) ? new PagingResultViewModel<ViewMenu>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
-
-        public async Task<PagingResultViewModel<ViewMenu>> getWithFilters(MenuFilterRequestModel request, int? userId)
-        {
-
-            var query = from m in context.Menus
-                        where m.UserId == userId
-                        select m;
-
-            int totalCount = query.Count();
-
-            List<ViewMenu> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
-                                          .Select(selector => new ViewMenu()
-                                          {
-                                              Id = selector.Id,
-                                              UserId = selector.UserId,
-                                              MenuName = selector.MenuName,
-                                              Description = selector.Description,
-                                              Status = (MenuStatus)selector.Status
-                                          }
-                                          ).ToListAsync();
-            return (items.Count() > 0) ? new PagingResultViewModel<ViewMenu>(items, totalCount, request.CurrentPage, request.PageSize) : null;
-        }
-        public async Task<PagingResultViewModel<ViewMenu>> getAllMenus(MenuFilterRequestModel request)
-        {
-
-            var query = from m in context.Menus
-                        where m.Status.Equals((int)MenuStatus.Public)
-                        select m;
-
-            int totalCount = query.Count();
-
-            List<ViewMenu> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
-                                          .Select(selector => new ViewMenu()
-                                          {
-                                              Id = selector.Id,
-                                              UserId = selector.UserId,
-                                              MenuName = selector.MenuName,
-                                              Description = selector.Description,
-                                              Status = (MenuStatus)selector.Status
-                                          }
-                                          ).ToListAsync();
-            return (items.Count() > 0) ? new PagingResultViewModel<ViewMenu>(items, totalCount, request.CurrentPage, request.PageSize) : null;
-        }
     }
 }

@@ -12,7 +12,5 @@ namespace CoRicetta.Business.Services.MenuService
     {
         Task CreateMenu(MenuFormViewModel model, string token);
         Task<PagingResultViewModel<ViewMenu>> GetWithFilters(string token, MenuFilterRequestModel request);
-        Task<PagingResultViewModel<ViewMenu>> getWithFilters(string token, MenuFilterRequestModel request);
-        Task<PagingResultViewModel<ViewMenu>> getAllMenus(string token, MenuFilterRequestModel request);
     }
 }

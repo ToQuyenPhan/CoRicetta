@@ -16,6 +16,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
         public ActionRepo(CoRicettaDBContext context) : base(context)
         {
         }
+
         public async Task<PagingResultViewModel<ViewAction>> GetActions(ActionRequestModel request)
         {
             var query = from a in context.Actions
@@ -43,18 +44,15 @@ namespace CoRicetta.Data.Repositories.ActionRepo
 
             return (items.Count() > 0) ? new PagingResultViewModel<ViewAction>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
+
         public void DeleteAction(int actionId)
         {
-
             Action action = context.Actions.FindAsync(actionId).Result;
             if (action != null)
             {
                 context.Actions.Remove(action);
                 context.SaveChanges();
-                /*context.Attach(action).State = EntityState.Deleted;
-                context.SaveChangesAsync();*/
             }
-
         }
     }
 }
