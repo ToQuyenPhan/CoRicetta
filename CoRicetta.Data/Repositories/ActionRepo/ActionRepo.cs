@@ -49,8 +49,8 @@ namespace CoRicetta.Data.Repositories.ActionRepo
             Action action = context.Actions.FindAsync(actionId).Result;
             if (action != null)
             {
-                action.Status = 0;
-                context.SaveChangesAsync();
+                context.Actions.Remove(action);
+                context.SaveChanges();
                 /*context.Attach(action).State = EntityState.Deleted;
                 context.SaveChangesAsync();*/
             }

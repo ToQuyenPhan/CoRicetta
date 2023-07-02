@@ -50,7 +50,7 @@ namespace CoRicetta.API.Controllers
             {
                 string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
                 _actionService.DeleteAction(token, actionId);
-                return Ok();
+                return Ok("Deleted");
             }
             catch (UnauthorizedAccessException ex)
             {
