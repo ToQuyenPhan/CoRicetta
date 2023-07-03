@@ -33,9 +33,25 @@ namespace CoRicetta.API.Controllers
             {
                 return Unauthorized(ex.Message);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("update")]
+        [SwaggerOperation(Summary = "Update a menu in CoRicetta")]
+        public async Task<ActionResult> UpdateMenu([FromBody] MenuFormViewModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _menuService.UpdateMenu(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
             }
             catch (Exception ex)
             {

@@ -13,7 +13,8 @@ namespace CoRicetta.Data.Repositories.GenericRepo
         Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[]? includes);
         Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, object>>[]? includes);
         Task<IList<T>> WhereAsync(Expression<Func<T, bool>> predicate, params string[] navigationProperties);
-
         Task CreateRangeAsync(List<T> entities);
+        Task UpdateAsync(T updated);
+        Task UpdateRangeAsync(IList<T> entities);
     }
 }

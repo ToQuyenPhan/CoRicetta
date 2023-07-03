@@ -1,5 +1,4 @@
 ﻿using CoRicetta.Business.Utils;
-using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.MenuDetailRepo;
 using CoRicetta.Data.Repositories.MenuRepo;
 using CoRicetta.Data.ViewModels.Menus;
@@ -29,6 +28,17 @@ namespace CoRicetta.Business.Services.MenuService
             }
             int userId = _decodeToken.Decode(token, "Id");
             await _menuRepo.CreateMenu(model, userId);
+        }
+
+        public async Task UpdateMenu(MenuFormViewModel model, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            int userId = _decodeToken.Decode(token, "Id");
+            await _menuRepo.UpdateMenu(model, userId);
         }
 
         public async Task<PagingResultViewModel<ViewMenu>> GetWithFilters(string token, MenuFilterRequestModel request)

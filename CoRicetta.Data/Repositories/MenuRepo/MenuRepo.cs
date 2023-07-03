@@ -30,6 +30,19 @@ namespace CoRicetta.Data.Repositories.MenuRepo
             await CreateAsync(menu);
         }
 
+        public async Task UpdateMenu(MenuFormViewModel model, int userId)
+        {
+            var menu = new Menu
+            {
+                Id = (int)model.MenuId,
+                UserId = userId,
+                MenuName = model.MenuName,
+                Description = model.Description,
+                Status = (int)model.Status
+            };
+            await UpdateAsync(menu);
+        }
+
         public async Task<PagingResultViewModel<ViewMenu>> GetWithFilters(MenuFilterRequestModel request)
         {
 

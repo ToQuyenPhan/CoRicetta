@@ -36,6 +36,18 @@ namespace CoRicetta.Data.Repositories.GenericRepo
             await context.SaveChangesAsync();
         }
 
+        public virtual async Task UpdateAsync(T updated)
+        {
+            context.Attach(updated).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+        }
+
+        public async Task UpdateRangeAsync(IList<T> entities)
+        {
+            context.UpdateRange(entities);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
         {
             return await _entities.AsQueryable().AsNoTracking().FirstOrDefaultAsync(predicate);
