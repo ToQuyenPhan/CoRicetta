@@ -1,4 +1,5 @@
 ﻿using CoRicetta.Business.Utils;
+using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.MenuDetailRepo;
 using CoRicetta.Data.Repositories.MenuRepo;
 using CoRicetta.Data.ViewModels.Menus;
@@ -51,6 +52,23 @@ namespace CoRicetta.Business.Services.MenuService
             }
             ViewMenu menu = await _menuRepo.GetMenuById(menuId);
             if (menu == null) throw new NullReferenceException("Menu not found");
+            foreach (var recipe in menu.Recipes)
+            {
+                switch (recipe.Level.ToString())
+                {
+                    case "Easy":
+                        recipe.Level = "Dễ";
+                        break;
+                    case "Normal":
+                        recipe.Level = "Trung bình";
+                        break;
+                    case "Hard":
+                        recipe.Level = "Khó";
+                        break;
+                    default:
+                        break;
+                }
+            }
             return menu;
         }
     }

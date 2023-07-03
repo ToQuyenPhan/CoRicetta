@@ -67,7 +67,7 @@ namespace CoRicetta.API.Controllers
             }
         }
 
-        [HttpGet("byId")]
+        [HttpGet("{menuId}")]
         [SwaggerOperation(Summary = "Get a menu by id in CoRicetta")]
         public async Task<IActionResult> GetMenuById(int menuId)
         {
