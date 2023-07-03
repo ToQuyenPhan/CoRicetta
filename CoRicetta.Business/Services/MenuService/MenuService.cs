@@ -24,7 +24,7 @@ namespace CoRicetta.Business.Services.MenuService
             string role = _decodeToken.DecodeText(token, "Role");
             if (role.Equals("ADMIN"))
             {
-                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
             }
             int userId = _decodeToken.Decode(token, "Id");
             await _menuRepo.CreateMenu(model, userId);
@@ -35,7 +35,7 @@ namespace CoRicetta.Business.Services.MenuService
             string role = _decodeToken.DecodeText(token, "Role");
             if (role.Equals("ADMIN"))
             {
-                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
             }
             int userId = _decodeToken.Decode(token, "Id");
             await _menuRepo.UpdateMenu(model, userId);

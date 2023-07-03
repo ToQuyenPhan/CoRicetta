@@ -3,6 +3,7 @@ using CoRicetta.Business.Services.CategoryService;
 using CoRicetta.Business.Services.IngredientService;
 using CoRicetta.Business.Services.MenuService;
 using CoRicetta.Business.Services.RecipeService;
+using CoRicetta.Business.Services.ReportService;
 using CoRicetta.Business.Services.StepService;
 using CoRicetta.Business.Services.UserService;
 using CoRicetta.Data.Context;
@@ -15,6 +16,7 @@ using CoRicetta.Data.Repositories.MenuDetailRepo;
 using CoRicetta.Data.Repositories.MenuRepo;
 using CoRicetta.Data.Repositories.RecipeDetailRepo;
 using CoRicetta.Data.Repositories.RecipeRepo;
+using CoRicetta.Data.Repositories.ReportRepo;
 using CoRicetta.Data.Repositories.StepRepo;
 using CoRicetta.Data.Repositories.UserRepo;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -79,6 +81,7 @@ namespace CoRicetta.API
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IStepService, StepService>();
+            services.AddScoped<IReportService, ReportService>();
             services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
 
             //Add Transient For Repo
@@ -92,6 +95,7 @@ namespace CoRicetta.API
             services.AddTransient<IStepRepo, StepRepo>();
             services.AddTransient<IRecipeDetailRepo, RecipeDetailRepo>();
             services.AddTransient<ICategoryDetailRepo, CategoryDetailRepo>();
+            services.AddTransient<IReportRepo, ReportRepo>();
 
             services.AddCors(opt =>
             {

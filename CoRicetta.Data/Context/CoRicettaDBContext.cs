@@ -209,7 +209,7 @@ namespace CoRicetta.Data.Context
 
             modelBuilder.Entity<Report>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.UserId, e.RecipeId }).HasName("PK__User__Recipe");
 
                 entity.ToTable("Report");
 
