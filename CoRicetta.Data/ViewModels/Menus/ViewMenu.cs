@@ -1,4 +1,5 @@
-﻿using CoRicetta.Data.Enum;
+﻿using CoRicetta.Data.ViewModels.Recipes;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace CoRicetta.Data.ViewModels.Menus
@@ -15,6 +16,6 @@ namespace CoRicetta.Data.ViewModels.Menus
         public string MenuName { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
-
+        public List<ViewRecipe> Recipes { get; set; }
     }
 }

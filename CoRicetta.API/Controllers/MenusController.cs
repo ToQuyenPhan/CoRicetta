@@ -50,8 +50,8 @@ namespace CoRicetta.API.Controllers
             try
             {
                 string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var users = await _menuService.GetWithFilters(token, request);
-                return Ok(users);
+                var menus = await _menuService.GetWithFilters(token, request);
+                return Ok(menus);
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -60,6 +60,30 @@ namespace CoRicetta.API.Controllers
             catch (NullReferenceException)
             {
                 return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("byId")]
+        [SwaggerOperation(Summary = "Get a menu by id in CoRicetta")]
+        public async Task<IActionResult> GetMenuById(int menuId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var menu = await _menuService.GetMenuById(token, menuId);
+                return Ok(menu);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new object());
             }
             catch (Exception ex)
             {

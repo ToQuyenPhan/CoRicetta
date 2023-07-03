@@ -41,5 +41,17 @@ namespace CoRicetta.Business.Services.MenuService
             if (menus.Items == null) throw new NullReferenceException("Not found any menus");
             return menus;
         }
+
+        public async Task<ViewMenu> GetMenuById(string token, int menuId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            ViewMenu menu = await _menuRepo.GetMenuById(menuId);
+            if (menu == null) throw new NullReferenceException("Menu not found");
+            return menu;
+        }
     }
 }
