@@ -34,7 +34,7 @@ namespace CoRicetta.Data.Repositories.MenuRepo
         {
 
             var query = from m in context.Menus select m;
-            if (request.MenuStatus.HasValue) query.Where(selector => selector.Status.Equals(request.MenuStatus));
+            if (request.MenuStatus.HasValue) query = query.Where(selector => selector.Status.Equals(request.MenuStatus));
             if (request.UserId.HasValue) query = query.Where(selector => selector.UserId.Equals(request.UserId));
             if (!string.IsNullOrEmpty(request.MenuName)) query = query.Where(selector => selector.MenuName.Contains(request.MenuName));
             int totalCount = query.Count();
