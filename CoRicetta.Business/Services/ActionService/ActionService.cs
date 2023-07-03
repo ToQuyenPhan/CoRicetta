@@ -9,12 +9,12 @@ namespace CoRicetta.Business.Services.ActionService
 {
     public class ActionService : IActionService
     {
-        private IActionRepo _recipeRepo;
+        private IActionRepo _actionRepo;
         private DecodeToken _decodeToken;
 
         public ActionService(IActionRepo actionRepo)
         {
-            _recipeRepo = actionRepo;
+            _actionRepo = actionRepo;
             _decodeToken = new DecodeToken();
         }
         public async Task<PagingResultViewModel<ViewAction>> GetActions(string token, ActionRequestModel request)
@@ -24,7 +24,7 @@ namespace CoRicetta.Business.Services.ActionService
             {
                 throw new UnauthorizedAccessException("You do not have permission to access this resource!");
             }
-            PagingResultViewModel<ViewAction> actions = await _recipeRepo.GetActions(request);
+            PagingResultViewModel<ViewAction> actions = await _actionRepo.GetActions(request);
             if (actions.Items == null) throw new NullReferenceException("Not found any action");
             return actions;
         }
@@ -35,7 +35,18 @@ namespace CoRicetta.Business.Services.ActionService
             {
                 throw new UnauthorizedAccessException("You do not have permission to access this resource!");
             }
-            _recipeRepo.DeleteAction(actionId);
+            _actionRepo.DeleteAction(actionId);
+        }
+
+        public async Task CreateComment(ActionFormModel model, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            int userId = _decodeToken.Decode(token, "Id");
+            await _actionRepo.CreateComment(model, userId);
         }
     }
 }

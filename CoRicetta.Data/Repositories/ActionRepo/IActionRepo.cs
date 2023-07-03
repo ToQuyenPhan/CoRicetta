@@ -1,9 +1,5 @@
 ﻿using CoRicetta.Data.ViewModels.Actions;
 using CoRicetta.Data.ViewModels.Paging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Data.Repositories.ActionRepo
@@ -12,5 +8,6 @@ namespace CoRicetta.Data.Repositories.ActionRepo
     {
         Task<PagingResultViewModel<ViewAction>> GetActions(ActionRequestModel request);
         public void DeleteAction(int actionId);
+        Task CreateComment(ActionFormModel model, int userId);
     }
 }

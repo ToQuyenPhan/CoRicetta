@@ -22,12 +22,14 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
 
         public async Task<PagingResultViewModel<ViewRecipe>> GetRecipes(RecipeFilterRequestModel request)
         {
-            var query = from r in context.Recipes join u in context.Users on r.UserId equals u.Id 
-                        where r.Status.Equals((int) RecipeStatus.Public) select new { u, r };
-            int totalCount = query.Count();
+            var query = from r in context.Recipes
+                        join u in context.Users on r.UserId equals u.Id
+                        select new { u, r };
+            if (request.RecipeStatus.HasValue) query.Where(selector => selector.r.Status.Equals(request.RecipeStatus));
             if (request.UserId.HasValue) query = query.Where(selector => selector.r.UserId.Equals(request.UserId));
             if (!string.IsNullOrEmpty(request.RecipeName)) query = query.Where(selector => selector.r.RecipeName.Contains(request.RecipeName));
             if (request.Level.HasValue) query = query.Where(selector => selector.r.Level.Equals(request.Level.ToString()));
+            int totalCount = query.Count();
             List<ViewRecipe> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
                                           .Select(selector => new ViewRecipe()
                                           {

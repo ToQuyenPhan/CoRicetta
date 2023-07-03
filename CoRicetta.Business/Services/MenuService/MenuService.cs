@@ -4,9 +4,6 @@ using CoRicetta.Data.Repositories.MenuRepo;
 using CoRicetta.Data.ViewModels.Menus;
 using CoRicetta.Data.ViewModels.Paging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.MenuService
@@ -14,7 +11,6 @@ namespace CoRicetta.Business.Services.MenuService
     public class MenuService : IMenuService
     {
         private IMenuRepo _menuRepo;
-        private IMenuDetailRepo _menuDetailRepo;
         private DecodeToken _decodeToken;
 
         public MenuService(IMenuRepo menuRepo, IMenuDetailRepo menuDetailRepo)

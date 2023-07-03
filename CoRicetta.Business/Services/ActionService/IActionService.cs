@@ -8,5 +8,6 @@ namespace CoRicetta.Business.Services.ActionService
     {
         Task<PagingResultViewModel<ViewAction>> GetActions(string token, ActionRequestModel request);
         public void DeleteAction(string token, int actionId);
+        Task CreateComment(ActionFormModel model, string token);
     }
 }

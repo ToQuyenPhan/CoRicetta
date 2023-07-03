@@ -40,7 +40,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                                               Status = selector.a.Status,
                                               Username = selector.u.UserName
                                           }
-                                          ).ToListAsync();
+                                          ).OrderByDescending(a => a.DateTime).ToListAsync();
 
             return (items.Count() > 0) ? new PagingResultViewModel<ViewAction>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
@@ -53,6 +53,20 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                 context.Actions.Remove(action);
                 context.SaveChanges();
             }
+        }
+
+        public async Task CreateComment(ActionFormModel model, int userId)
+        {
+            var action = new Action
+            {
+                UserId = userId,
+                RecipeId = model.RecipeId,
+                Type = model.Type,
+                Content = model.Content,
+                DateTime = System.DateTime.Now.ToLocalTime(),
+                Status = 1
+            };
+            await CreateAsync(action);
         }
     }
 }

@@ -14,7 +14,6 @@ namespace CoRicetta.Data.Repositories.MenuRepo
 {
     public class MenuRepo : GenericRepo<Menu>, IMenuRepo
     {
-        private readonly IGenericRepo<Menu> _menuRepository;
         public MenuRepo(CoRicettaDBContext context) : base(context)
         {
         }

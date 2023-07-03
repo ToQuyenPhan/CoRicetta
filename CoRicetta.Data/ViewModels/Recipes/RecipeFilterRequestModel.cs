@@ -17,5 +17,8 @@ namespace CoRicetta.Data.ViewModels.Recipes
 
         [FromQuery(Name = "level")]
         public Level? Level { get; set; }
+
+        [FromQuery(Name = "recipeStatus")]
+        public int? RecipeStatus { get; set; }
     }
 }

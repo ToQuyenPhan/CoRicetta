@@ -66,5 +66,25 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("create")]
+        [SwaggerOperation(Summary = "Create a comment in CoRicetta")]
+        public async Task<IActionResult> CreateComment([FromBody] ActionFormModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _actionService.CreateComment(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
