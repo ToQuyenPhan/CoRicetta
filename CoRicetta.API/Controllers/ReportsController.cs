@@ -6,6 +6,9 @@ using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
 using System;
 using CoRicetta.Data.ViewModels.Reports;
+using CoRicetta.Data.ViewModels.Recipes;
+using System.Collections.Generic;
+using CoRicetta.Data.ViewModels.Paging;
 
 namespace CoRicetta.API.Controllers
 {
@@ -33,6 +36,30 @@ namespace CoRicetta.API.Controllers
             catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("all")]
+        [SwaggerOperation(Summary = "Get all reports of CoRicetta")]
+        public async Task<IActionResult> GetAllRecipes([FromQuery] PagingRequestViewModel request)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var reports = await _reportService.GetReports(token, request);
+                return Ok(reports);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
             }
             catch (Exception ex)
             {
