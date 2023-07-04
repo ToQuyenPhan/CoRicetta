@@ -55,7 +55,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
             }
         }
 
-        public async Task CreateComment(ActionFormModel model, int userId)
+        public async Task CreateAction(ActionFormModel model, int userId)
         {
             var action = new Action
             {
@@ -67,6 +67,27 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                 Status = 1
             };
             await CreateAsync(action);
+        }
+
+        public async Task<ViewAction> GetLike(ActionRequestModel model)
+        {
+            var query = from a in context.Actions
+                        join u in context.Users on a.UserId equals u.Id
+                        join r in context.Recipes on a.RecipeId equals r.Id
+                        where a.UserId.Equals(model.UserId) && a.RecipeId.Equals(model.RecipeId) 
+                        && a.Type.Equals((int)model.Type)
+                        select new { u, r, a };
+            return await query.Select(selector => new ViewAction()
+            {
+                Id = selector.a.Id,
+                UserId = selector.a.UserId,
+                RecipeId = selector.a.RecipeId,
+                Content = selector.a.Content,
+                Type = ((ActionType)selector.a.Type),
+                DateTime = selector.a.DateTime,
+                Status = selector.a.Status,
+                Username = selector.u.UserName
+            }).FirstOrDefaultAsync();
         }
     }
 }

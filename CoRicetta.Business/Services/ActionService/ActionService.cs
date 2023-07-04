@@ -17,6 +17,7 @@ namespace CoRicetta.Business.Services.ActionService
             _actionRepo = actionRepo;
             _decodeToken = new DecodeToken();
         }
+
         public async Task<PagingResultViewModel<ViewAction>> GetActions(string token, ActionRequestModel request)
         {
             string role = _decodeToken.DecodeText(token, "Role");
@@ -28,6 +29,7 @@ namespace CoRicetta.Business.Services.ActionService
             if (actions.Items == null) throw new NullReferenceException("Not found any action");
             return actions;
         }
+
         public void DeleteAction(string token, int actionId)
         {
             string role = _decodeToken.DecodeText(token, "Role");
@@ -38,7 +40,7 @@ namespace CoRicetta.Business.Services.ActionService
             _actionRepo.DeleteAction(actionId);
         }
 
-        public async Task CreateComment(ActionFormModel model, string token)
+        public async Task CreateAction(ActionFormModel model, string token)
         {
             string role = _decodeToken.DecodeText(token, "Role");
             if (role.Equals("ADMIN"))
@@ -46,7 +48,19 @@ namespace CoRicetta.Business.Services.ActionService
                 throw new UnauthorizedAccessException("You do not have permission to access this resource!");
             }
             int userId = _decodeToken.Decode(token, "Id");
-            await _actionRepo.CreateComment(model, userId);
+            await _actionRepo.CreateAction(model, userId);
+        }
+
+        public async Task<ViewAction> GetLike(string token, ActionRequestModel request)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            ViewAction action = await _actionRepo.GetLike(request);
+            if (action == null) throw new NullReferenceException("Not found any action");
+            return action;
         }
     }
 }

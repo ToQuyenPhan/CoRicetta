@@ -28,8 +28,8 @@ namespace CoRicetta.API.Controllers
             try
             {
                 string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var users = await _actionService.GetActions(token, request);
-                return Ok(users);
+                var actions = await _actionService.GetActions(token, request);
+                return Ok(actions);
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -76,12 +76,36 @@ namespace CoRicetta.API.Controllers
             try
             {
                 string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                await _actionService.CreateComment(model, token);
+                await _actionService.CreateAction(model, token);
                 return Ok();
             }
             catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("getLike")]
+        [SwaggerOperation(Summary = "Get an action in CoRicetta")]
+        public async Task<IActionResult> GetLike([FromQuery] ActionRequestModel request)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var action = await _actionService.GetLike(token, request);
+                return Ok(action);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {

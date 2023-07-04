@@ -42,7 +42,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
                                               CookTime = selector.r.CookTime,
                                               Image = selector.r.Image,
                                               Description = selector.r.Description,
-                                              Status = ((RecipeStatus)selector.r.Status),
+                                              Status = ((RecipeStatus)selector.r.Status).ToString(),
                                           }
                                           ).ToListAsync();
             foreach(var element in items)
@@ -84,7 +84,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
                                               CookTime = selector.r.CookTime,
                                               Image = selector.r.Image,
                                               Description = selector.r.Description,
-                                              Status = ((RecipeStatus)selector.r.Status),
+                                              Status = ((RecipeStatus)selector.r.Status).ToString(),
                                           }
                                           ).FirstOrDefaultAsync();
             item.Categories = await GetCategoriesInRecipe(item.Id);

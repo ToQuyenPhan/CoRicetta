@@ -8,6 +8,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
     {
         Task<PagingResultViewModel<ViewAction>> GetActions(ActionRequestModel request);
         public void DeleteAction(int actionId);
-        Task CreateComment(ActionFormModel model, int userId);
+        Task CreateAction(ActionFormModel model, int userId);
+        Task<ViewAction> GetLike(ActionRequestModel model);
     }
 }

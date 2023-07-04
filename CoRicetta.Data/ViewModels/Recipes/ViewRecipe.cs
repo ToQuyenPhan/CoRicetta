@@ -28,7 +28,7 @@ namespace CoRicetta.Data.ViewModels.Recipes
         public int CookTime { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
-        public RecipeStatus Status { get; set; }
+        public string Status { get; set; }
 
         public List<ViewCategory> Categories { get; set; }
         public List<ViewIngredient> Ingredients { get; set; }

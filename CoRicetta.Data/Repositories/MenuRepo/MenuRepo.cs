@@ -106,7 +106,7 @@ namespace CoRicetta.Data.Repositories.MenuRepo
                               CookTime = r.CookTime,
                               Image = r.Image,
                               Description = r.Description,
-                              Status = ((RecipeStatus)r.Status),
+                              Status = ((RecipeStatus)r.Status).ToString(),
                           }).ToListAsync();
         }
 

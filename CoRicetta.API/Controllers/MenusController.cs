@@ -109,9 +109,9 @@ namespace CoRicetta.API.Controllers
             }
         }
 
-        [HttpDelete("{menuId}")]
+        [HttpDelete("delete")]
         [SwaggerOperation(Summary = "Delete a menu in CoRicetta")]
-        public async Task<ActionResult> DeleteMenu(int menuId)
+        public async Task<ActionResult> DeleteMenu([FromQuery]int menuId)
         {
             try
             {
