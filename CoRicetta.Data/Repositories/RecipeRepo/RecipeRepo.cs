@@ -25,7 +25,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
             var query = from r in context.Recipes
                         join u in context.Users on r.UserId equals u.Id
                         select new { u, r };
-            if (request.RecipeStatus.HasValue) query.Where(selector => selector.r.Status.Equals(request.RecipeStatus));
+            if (request.RecipeStatus.HasValue) query = query.Where(selector => selector.r.Status.Equals(request.RecipeStatus));
             if (request.UserId.HasValue) query = query.Where(selector => selector.r.UserId.Equals(request.UserId));
             if (!string.IsNullOrEmpty(request.RecipeName)) query = query.Where(selector => selector.r.RecipeName.Contains(request.RecipeName));
             if (request.Level.HasValue) query = query.Where(selector => selector.r.Level.Equals(request.Level.ToString()));
@@ -71,7 +71,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
         {
             var query = from r in context.Recipes
                         join u in context.Users on r.UserId equals u.Id
-                        where r.Status.Equals((int)RecipeStatus.Public) && r.Id.Equals(recipeId)
+                        where r.Id.Equals(recipeId)
                         select new { u, r };
             ViewRecipe item = await query.Select(selector => new ViewRecipe()
                                           {

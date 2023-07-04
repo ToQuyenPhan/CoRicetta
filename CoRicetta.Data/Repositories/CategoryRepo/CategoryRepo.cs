@@ -1,4 +1,5 @@
 ﻿using CoRicetta.Data.Context;
+using CoRicetta.Data.Enum;
 using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.ViewModels.Categories;
@@ -17,7 +18,7 @@ namespace CoRicetta.Data.Repositories.CategoryRepo
 
         public async Task<List<ViewCategory>> GetCategories()
         {
-            var query = from c in context.Categories where c.Status.Equals(1) select c;
+            var query = from c in context.Categories where c.Status.Equals((int) CategoryStatus.Active) select c;
             List<ViewCategory> items = await query
                                           .Select(selector => new ViewCategory()
                                           {

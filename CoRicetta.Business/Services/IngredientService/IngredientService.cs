@@ -1,8 +1,7 @@
 ﻿using CoRicetta.Data.Repositories.IngredientRepo;
+using CoRicetta.Data.ViewModels.Ingredients;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.IngredientService
@@ -15,5 +14,13 @@ namespace CoRicetta.Business.Services.IngredientService
         {
             _ingredientRepo = ingredientRepo;
         }
+
+        public async Task<List<ViewIngredient>> GetActiveIngredients()
+        {
+            List<ViewIngredient> items = await _ingredientRepo.GetActiveIngredients();
+            if (items == null) throw new NullReferenceException("Not found any ingredients");
+            return items;
+        }
+
     }
 }

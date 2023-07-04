@@ -27,10 +27,47 @@ namespace CoRicetta.Data.Repositories.RecipeDetailRepo
                         IngredientId = ingredient.Ingredient,
                         Quantity = ingredient.Quantity,
                     };
-                    list.Add(recipeDetail);
+                    var isExisted = await CheckSameRecipeDetail(recipeDetail, list);
+                    if (isExisted)
+                    {
+                        list = await UpdateQuantity(recipeDetail, list);
+                    }
+                    else
+                    {
+                        list.Add(recipeDetail);
+                    }
                 }
                 await CreateRangeAsync(list);
             }
+        }
+
+        private async Task<bool> CheckSameRecipeDetail(RecipeDetail recipeDetail, List<RecipeDetail> list)
+        {
+            var check = false;
+            foreach(var item in list)
+            {
+                if(item.IngredientId.Equals(recipeDetail.IngredientId) 
+                        && item.RecipeId.Equals(recipeDetail.RecipeId))
+                {
+                    check = true;
+                    break;
+                }
+            }
+            return check;
+        }
+
+        private async Task<List<RecipeDetail>> UpdateQuantity(RecipeDetail recipeDetail, List<RecipeDetail> list)
+        {
+            foreach (var item in list)
+            {
+                if (item.IngredientId.Equals(recipeDetail.IngredientId)
+                        && item.RecipeId.Equals(recipeDetail.RecipeId))
+                {
+                    item.Quantity += recipeDetail.Quantity;
+                    break;
+                }
+            }
+            return list;
         }
     }
 }

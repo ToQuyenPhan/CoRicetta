@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CoRicetta.Data.Context;
-using CoRicetta.Data.Models;
 using CoRicetta.Business.Services.IngredientService;
+using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CoRicetta.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class IngredientsController : ControllerBase
     {
         private IIngredientService _ingredientService;
@@ -20,6 +18,25 @@ namespace CoRicetta.API.Controllers
         public IngredientsController(IIngredientService ingredientService)
         {
             _ingredientService = ingredientService;
+        }
+
+        [HttpGet("all")]
+        [SwaggerOperation(Summary = "Get all active ingredients of CoRicetta")]
+        public async Task<IActionResult> GetActiveIngredients()
+        {
+            try
+            {
+                var ingredients = await _ingredientService.GetActiveIngredients();
+                return Ok(ingredients);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
