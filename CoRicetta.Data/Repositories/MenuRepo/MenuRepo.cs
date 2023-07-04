@@ -83,6 +83,12 @@ namespace CoRicetta.Data.Repositories.MenuRepo
             return (item != null) ? item : null;
         }
 
+        public async Task DeleteMenu(int menuId)
+        {
+            var menu = await GetMenu(menuId);
+            await DeleteAsync(menu);
+        }
+
         private async Task<List<ViewRecipe>> GetRecipesInMenu(int menuId)
         {
             return await (from md in context.MenuDetails
@@ -102,6 +108,12 @@ namespace CoRicetta.Data.Repositories.MenuRepo
                               Description = r.Description,
                               Status = ((RecipeStatus)r.Status),
                           }).ToListAsync();
+        }
+
+        private async Task<Menu> GetMenu(int menuId)
+        {
+            var query = from m in context.Menus where m.Id.Equals(menuId) select m;
+            return query.FirstOrDefault();
         }
     }
 }

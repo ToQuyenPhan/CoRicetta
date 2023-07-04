@@ -81,5 +81,17 @@ namespace CoRicetta.Business.Services.MenuService
             }
             return menu;
         }
+
+        public async Task DeleteMenu(int menuId, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            var menu = await _menuRepo.GetMenuById(menuId);
+            if (menu == null) throw new NullReferenceException("Not found any menus!");
+            await _menuRepo.DeleteMenu(menu.Id);
+        }
     }
 }

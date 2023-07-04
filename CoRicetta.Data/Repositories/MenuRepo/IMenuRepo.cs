@@ -10,5 +10,6 @@ namespace CoRicetta.Data.Repositories.MenuRepo
         Task<PagingResultViewModel<ViewMenu>> GetWithFilters(MenuFilterRequestModel request);
         Task<ViewMenu> GetMenuById(int menuId);
         Task UpdateMenu(MenuFormViewModel model, int userId);
+        Task DeleteMenu(int menuId);
     }
 }

@@ -108,5 +108,29 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("{menuId}")]
+        [SwaggerOperation(Summary = "Delete a menu in CoRicetta")]
+        public async Task<ActionResult> DeleteMenu(int menuId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _menuService.DeleteMenu(menuId, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
