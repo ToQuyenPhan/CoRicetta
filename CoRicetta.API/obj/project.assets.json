@@ -9697,19 +9697,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lennovo\\.nuget\\packages\\": {}
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
+      "projectUniqueName": "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
       "projectName": "CoRicetta.API",
-      "projectPath": "E:\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
-      "packagesPath": "C:\\Users\\lennovo\\.nuget\\packages\\",
-      "outputPath": "E:\\CoRicetta\\CoRicetta.API\\obj\\",
+      "projectPath": "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.API\\CoRicetta.API.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\lennovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9717,17 +9722,19 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
-              "projectPath": "E:\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj"
+            "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj": {
+              "projectPath": "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.Business\\CoRicetta.Business.csproj"
             },
-            "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
-              "projectPath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
+            "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj": {
+              "projectPath": "D:\\PRN231\\GroupProject\\New folder\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj"
             }
           }
         }
@@ -9796,7 +9803,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
