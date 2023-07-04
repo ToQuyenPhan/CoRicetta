@@ -110,6 +110,31 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
             return recipe.Id;
         }
 
+        public async Task UpdateRecipe(RecipeFormViewModel model, int recipeId)
+        {
+            var query = from r in context.Recipes where r.Id.Equals(recipeId) select r;
+            var recipe = await query.Select(selector => new Recipe
+            {
+                Id = selector.Id,
+                UserId = selector.UserId,
+                RecipeName = selector.RecipeName,
+                Level = selector.Level,
+                PrepareTime = selector.PrepareTime,
+                CookTime = selector.CookTime,
+                Image = selector.Image,
+                Description = selector.Description,
+                Status = selector.Status
+            }).FirstOrDefaultAsync();
+            recipe.RecipeName = model.RecipeName;
+            recipe.Level = model.Level.ToString();
+            recipe.PrepareTime = model.PrepareTime;
+            recipe.CookTime = model.CookTime;
+            recipe.Image = model.Image;
+            recipe.Description = model.Description;
+            recipe.Status = model.Status;
+            await UpdateAsync(recipe);
+        }
+
         private async Task<List<ViewCategory>> GetCategoriesInRecipe(int recipeId)
         {
             return await (from cd in context.CategoryDetails

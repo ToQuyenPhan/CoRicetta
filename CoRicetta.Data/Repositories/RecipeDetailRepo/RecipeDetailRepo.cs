@@ -2,6 +2,7 @@
 using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.ViewModels.Recipes;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,45 @@ namespace CoRicetta.Data.Repositories.RecipeDetailRepo
                 foreach(var ingredient in ingredients)
                 {
                     var recipeDetail = new RecipeDetail { 
+                        RecipeId = recipeId,
+                        IngredientId = ingredient.Ingredient,
+                        Quantity = ingredient.Quantity,
+                    };
+                    var isExisted = await CheckSameRecipeDetail(recipeDetail, list);
+                    if (isExisted)
+                    {
+                        list = await UpdateQuantity(recipeDetail, list);
+                    }
+                    else
+                    {
+                        list.Add(recipeDetail);
+                    }
+                }
+                await CreateRangeAsync(list);
+            }
+        }
+
+        public async Task UpdateRecipeDetail(RecipeFormViewModel model, int recipeId)
+        {
+            if (model.Ingredients.Any() && model.Quantities.Any())
+            {
+                var query = from rd in context.RecipeDetails where rd.RecipeId.Equals(recipeId) select rd;
+                List<RecipeDetail> items = await query.Select(selector => new RecipeDetail
+                {
+                    RecipeId = selector.RecipeId,
+                    IngredientId = selector.IngredientId,
+                    Quantity = selector.Quantity
+                }).ToListAsync();
+                if (items.Count() > 0)
+                {
+                    await DeleteRangeAsync(items);
+                }
+                var ingredients = model.Ingredients.Zip(model.Quantities, (i, q) => new { Ingredient = i, Quantity = q });
+                List<RecipeDetail> list = new List<RecipeDetail>();
+                foreach (var ingredient in ingredients)
+                {
+                    var recipeDetail = new RecipeDetail
+                    {
                         RecipeId = recipeId,
                         IngredientId = ingredient.Ingredient,
                         Quantity = ingredient.Quantity,

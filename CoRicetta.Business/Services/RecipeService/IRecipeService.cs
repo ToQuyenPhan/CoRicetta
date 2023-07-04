@@ -9,5 +9,6 @@ namespace CoRicetta.Business.Services.RecipeService
         Task<PagingResultViewModel<ViewRecipe>> GetRecipes(string token, RecipeFilterRequestModel request);
         Task<ViewRecipe> getById(int recipeId);
         Task CreateRecipe(RecipeFormViewModel model, string token);
+        Task UpdateRecipe(RecipeFormViewModel model, string token, int recipeId);
     }
 }

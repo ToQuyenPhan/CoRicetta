@@ -54,6 +54,12 @@ namespace CoRicetta.Data.Repositories.GenericRepo
             await context.SaveChangesAsync();
         }
 
+        public virtual async Task DeleteRangeAsync(IList<T> entities)
+        {
+            _entities.RemoveRange(entities);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
         {
             return await _entities.AsQueryable().AsNoTracking().FirstOrDefaultAsync(predicate);

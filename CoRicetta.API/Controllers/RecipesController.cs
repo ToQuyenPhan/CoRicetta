@@ -83,5 +83,29 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("update")]
+        [SwaggerOperation(Summary = "Update a recipe in CoRicetta")]
+        public async Task<ActionResult> UpdateRecipe([FromBody] RecipeFormViewModel model, [FromQuery] int recipeId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _recipeService.UpdateRecipe(model, token, recipeId);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch(NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

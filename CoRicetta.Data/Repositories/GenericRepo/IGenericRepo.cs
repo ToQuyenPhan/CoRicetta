@@ -17,5 +17,6 @@ namespace CoRicetta.Data.Repositories.GenericRepo
         Task UpdateAsync(T updated);
         Task UpdateRangeAsync(IList<T> entities);
         Task DeleteAsync(T entity);
+        Task DeleteRangeAsync(IList<T> entities);
     }
 }

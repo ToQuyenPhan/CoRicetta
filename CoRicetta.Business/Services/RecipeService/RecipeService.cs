@@ -87,5 +87,20 @@ namespace CoRicetta.Business.Services.RecipeService
             await _recipeDetailRepo.CreateRecipeDetail(model, recipeId);
             await _stepRepo.CreateSteps(model, recipeId);
         }
+
+        public async Task UpdateRecipe(RecipeFormViewModel model, string token, int recipeId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            var recipe = await _recipeRepo.GetRecipeById(recipeId);
+            if (recipe == null) throw new NullReferenceException("Not found any reicpes!");
+            await _recipeRepo.UpdateRecipe(model, recipeId);
+            await _categoryDetailRepo.UpdateCategoryDetail(model, recipeId);
+            await _recipeDetailRepo.UpdateRecipeDetail(model, recipeId);
+            await _stepRepo.UpdateSteps(model, recipeId);
+        }
     }
 }
