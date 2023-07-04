@@ -4,6 +4,7 @@ using CoRicetta.Data.JWT;
 using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.Repositories.UserRepo;
+using CoRicetta.Data.ViewModels.Menus;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Users;
 using System;
@@ -122,6 +123,34 @@ namespace CoRicetta.Business.Services.UserService
             {
                 throw new ArgumentException("Something went wrong, please try again later!");
             }
+        }
+        public async Task CreateUser(UserFormViewModel model, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            await _userRepo.CreateUser(model);
+        }
+        public async Task UpdateUser(UserFormViewModel model, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            int userId = _decodeToken.Decode(token, "Id");
+            await _userRepo.UpdateUser(model, userId);
+        }
+        public async  Task DeleteUser(string token, int userId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }  
+            await _userRepo.DeleteUser(userId);
         }
     }
 }

@@ -3,6 +3,7 @@ using CoRicetta.Data.Enum;
 using CoRicetta.Data.Models;
 using CoRicetta.Data.Repositories.GenericRepo;
 using CoRicetta.Data.ViewModels.Paging;
+using CoRicetta.Data.ViewModels.Recipes;
 using CoRicetta.Data.ViewModels.Users;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -72,5 +73,42 @@ namespace CoRicetta.Data.Repositories.UserRepo
                                           ).FirstOrDefaultAsync();
              return item;
         }
+        public async Task CreateUser(UserFormViewModel model)
+        {
+            var _user = new User
+            {
+                UserName = model.UserName,
+                Password = model.Password,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Role = model.Role,
+                Status = (int)model.Status,
+            };
+            await CreateAsync(_user);
+        }
+        public async Task UpdateUser(UserFormViewModel model, int userId)
+        {
+            var _user = new User
+            {
+                Id = (int)model.UserId,
+                UserName = model.UserName,
+                Password = model.Password,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Role = model.Role,
+                Status = (int)model.Status,
+            };
+            await UpdateAsync(_user);
+        }
+        public async Task DeleteUser(int userId)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                user.Status = (int)UserStatus.InActive;
+                await UpdateAsync(user);
+            }
+        }
+
     }
 }
