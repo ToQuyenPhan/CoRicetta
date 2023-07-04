@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using CoRicetta.Business.Services.RecipeService;
 using Swashbuckle.AspNetCore.Annotations;
 using CoRicetta.Data.ViewModels.Recipes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoRicetta.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RecipesController : ControllerBase
     {
         private IRecipeService _recipeService;
@@ -49,13 +51,8 @@ namespace CoRicetta.API.Controllers
         {
             try
             {
-                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var recipe = await _recipeService.getById(token, recipeId);
+                var recipe = await _recipeService.getById(recipeId);
                 return Ok(recipe);
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(ex.Message);
             }
             catch (ArgumentException ex)
             {

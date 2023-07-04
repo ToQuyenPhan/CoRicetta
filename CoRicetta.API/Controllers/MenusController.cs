@@ -5,11 +5,13 @@ using CoRicetta.Business.Services.MenuService;
 using System.Collections.Generic;
 using Swashbuckle.AspNetCore.Annotations;
 using CoRicetta.Data.ViewModels.Menus;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoRicetta.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MenusController : ControllerBase
     {
         private IMenuService _menuService;

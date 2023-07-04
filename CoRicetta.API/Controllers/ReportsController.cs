@@ -1,19 +1,18 @@
 ﻿using CoRicetta.Business.Services.ReportService;
-using CoRicetta.Data.ViewModels.Menus;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
 using System;
 using CoRicetta.Data.ViewModels.Reports;
-using CoRicetta.Data.ViewModels.Recipes;
 using System.Collections.Generic;
 using CoRicetta.Data.ViewModels.Paging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoRicetta.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReportsController : ControllerBase
     {
         private IReportService _reportService;
@@ -25,7 +24,7 @@ namespace CoRicetta.API.Controllers
 
         [HttpPost("create")]
         [SwaggerOperation(Summary = "Create a report in CoRicetta")]
-        public async Task<ActionResult> CreateMenu([FromBody] ReportFormModel model)
+        public async Task<ActionResult> CreateReport([FromBody] ReportFormModel model)
         {
             try
             {
@@ -45,7 +44,7 @@ namespace CoRicetta.API.Controllers
 
         [HttpGet("all")]
         [SwaggerOperation(Summary = "Get all reports of CoRicetta")]
-        public async Task<IActionResult> GetAllRecipes([FromQuery] PagingRequestViewModel request)
+        public async Task<IActionResult> GetAllReports([FromQuery] PagingRequestViewModel request)
         {
             try
             {
@@ -60,6 +59,70 @@ namespace CoRicetta.API.Controllers
             catch (NullReferenceException)
             {
                 return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("approve")]
+        [SwaggerOperation(Summary = "Approve a report in CoRicetta")]
+        public async Task<ActionResult> ApproveReport([FromBody] ReportRequestFormModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _reportService.ApproveReport(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("reject")]
+        [SwaggerOperation(Summary = "Reject a report in CoRicetta")]
+        public async Task<ActionResult> RejectReport([FromBody] ReportRequestFormModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _reportService.RejectReport(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("find")]
+        [SwaggerOperation(Summary = "Get a report by userId & recipeId in CoRicetta")]
+        public async Task<IActionResult> FindReport([FromQuery] ReportRequestFormModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var report = await _reportService.FindReport(token, model);
+                return Ok(report);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {

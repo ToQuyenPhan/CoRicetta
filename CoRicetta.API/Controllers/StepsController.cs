@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CoRicetta.Data.Context;
-using CoRicetta.Data.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using CoRicetta.Business.Services.StepService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoRicetta.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StepsController : ControllerBase
     {
         private IStepService _stepService;

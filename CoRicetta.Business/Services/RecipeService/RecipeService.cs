@@ -57,15 +57,10 @@ namespace CoRicetta.Business.Services.RecipeService
             return recipes;
         }
 
-        public async Task<ViewRecipe> getById(string token, int recipeId)
+        public async Task<ViewRecipe> getById(int recipeId)
         {
             try
             {
-                string role = _decodeToken.DecodeText(token, "Role");
-                if (role.Equals("ADMIN"))
-                {
-                    throw new UnauthorizedAccessException("You do not have permission to access this resource!");
-                }
                 var recipe = await _recipeRepo.GetRecipeById(recipeId);
                 if (recipe == null)
                 {

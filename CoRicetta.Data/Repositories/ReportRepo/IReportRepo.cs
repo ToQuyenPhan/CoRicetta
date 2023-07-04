@@ -8,5 +8,8 @@ namespace CoRicetta.Data.Repositories.ReportRepo
     {
         Task CreateReport(ReportFormModel model, int userId);
         Task<PagingResultViewModel<ViewReport>> GetAllReports(PagingRequestViewModel request);
+        Task ApproveReport(ReportRequestFormModel model);
+        Task RejectReport(ReportRequestFormModel model);
+        Task<ViewReport> FindReport(ReportRequestFormModel model);
     }
 }

@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using CoRicetta.Business.Services.ActionService;
 using Swashbuckle.AspNetCore.Annotations;
 using CoRicetta.Data.ViewModels.Actions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoRicetta.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ActionsController : ControllerBase
     {
         private IActionService _actionService;
