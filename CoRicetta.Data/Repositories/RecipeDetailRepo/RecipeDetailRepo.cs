@@ -81,6 +81,21 @@ namespace CoRicetta.Data.Repositories.RecipeDetailRepo
             }
         }
 
+        public async Task DeleteRecipeDetailByRecipeId(int recipeId)
+        {
+            var query = from rd in context.RecipeDetails where rd.RecipeId.Equals(recipeId) select rd;
+            List<RecipeDetail> items = await query.Select(selector => new RecipeDetail
+            {
+                RecipeId = selector.RecipeId,
+                IngredientId = selector.IngredientId,
+                Quantity = selector.Quantity
+            }).ToListAsync();
+            if (items.Count() > 0)
+            {
+                await DeleteRangeAsync(items);
+            }
+        }
+
         private async Task<bool> CheckSameRecipeDetail(RecipeDetail recipeDetail, List<RecipeDetail> list)
         {
             var check = false;

@@ -67,5 +67,22 @@ namespace CoRicetta.Data.Repositories.StepRepo
                 await CreateRangeAsync(steps);
             }
         }
+
+        public async Task DeleteStepsByRecipeId(int recipeId)
+        {
+            var query = from s in context.Steps where s.RecipeId.Equals(recipeId) select s;
+            List<Step> items = await query.Select(selector => new Step
+            {
+                Id = selector.Id,
+                RecipeId = selector.RecipeId,
+                StepNumber = selector.StepNumber,
+                Description = selector.Description,
+                Status = selector.Status
+            }).ToListAsync();
+            if (items.Count() > 0)
+            {
+                await DeleteRangeAsync(items);
+            }
+        }
     }
 }

@@ -107,5 +107,29 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("delete")]
+        [SwaggerOperation(Summary = "Delete a recipe in CoRicetta")]
+        public async Task<ActionResult> DeleteRecipe([FromQuery] int recipeId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _recipeService.DeleteRecipe(token, recipeId);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

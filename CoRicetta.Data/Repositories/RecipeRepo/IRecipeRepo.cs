@@ -10,5 +10,6 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
         Task<ViewRecipe> GetRecipeById(int recipeId);
         Task<int> CreateRecipe(RecipeFormViewModel model, int userId);
         Task UpdateRecipe(RecipeFormViewModel model, int recipeId);
+        Task DeleteRecipe(int recipeId);
     }
 }

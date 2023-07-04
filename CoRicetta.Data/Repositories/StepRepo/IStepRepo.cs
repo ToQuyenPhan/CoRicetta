@@ -7,5 +7,6 @@ namespace CoRicetta.Data.Repositories.StepRepo
     {
         Task CreateSteps(RecipeFormViewModel model, int recipeId);
         Task UpdateSteps(RecipeFormViewModel model, int recipeId);
+        Task DeleteStepsByRecipeId(int recipeId);
     }
 }

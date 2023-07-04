@@ -1,7 +1,10 @@
 ﻿using CoRicetta.Business.Utils;
+using CoRicetta.Data.Repositories.ActionRepo;
 using CoRicetta.Data.Repositories.CategoryDetailRepo;
+using CoRicetta.Data.Repositories.MenuDetailRepo;
 using CoRicetta.Data.Repositories.RecipeDetailRepo;
 using CoRicetta.Data.Repositories.RecipeRepo;
+using CoRicetta.Data.Repositories.ReportRepo;
 using CoRicetta.Data.Repositories.StepRepo;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Recipes;
@@ -16,15 +19,22 @@ namespace CoRicetta.Business.Services.RecipeService
         private IRecipeDetailRepo _recipeDetailRepo;
         private IStepRepo _stepRepo;
         private ICategoryDetailRepo _categoryDetailRepo;
+        private IActionRepo _actionRepo;
+        private IReportRepo _reportRepo;
+        private IMenuDetailRepo _menuDetailRepo;
         private DecodeToken _decodeToken;
 
         public RecipeService(IRecipeRepo recipeRepo, IRecipeDetailRepo recipeDetailRepo, IStepRepo stepRepo, 
-            ICategoryDetailRepo categoryDetailRepo)
+            ICategoryDetailRepo categoryDetailRepo, IActionRepo actionRepo, IReportRepo reportRepo,
+            IMenuDetailRepo menuDetailRepo)
         {
             _recipeRepo = recipeRepo;
             _recipeDetailRepo = recipeDetailRepo;
             _stepRepo = stepRepo;
             _categoryDetailRepo = categoryDetailRepo;
+            _actionRepo = actionRepo;
+            _reportRepo = reportRepo;
+            _menuDetailRepo = menuDetailRepo;
             _decodeToken = new DecodeToken();
         }
 
@@ -101,6 +111,24 @@ namespace CoRicetta.Business.Services.RecipeService
             await _categoryDetailRepo.UpdateCategoryDetail(model, recipeId);
             await _recipeDetailRepo.UpdateRecipeDetail(model, recipeId);
             await _stepRepo.UpdateSteps(model, recipeId);
+        }
+
+        public async Task DeleteRecipe(string token, int recipeId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            var recipe = await _recipeRepo.GetRecipeById(recipeId);
+            if (recipe == null) throw new NullReferenceException("Not found any reicpes!");
+            await _categoryDetailRepo.DeleteCategoryDetailByRecipeId(recipeId);
+            await _recipeDetailRepo.DeleteRecipeDetailByRecipeId(recipeId);
+            await _stepRepo.DeleteStepsByRecipeId(recipeId);
+            await _actionRepo.DeleteActionsByRecipeId(recipeId);
+            await _reportRepo.DeleteReportsByRecipeId(recipeId);
+            await _menuDetailRepo.DeleteMenuDetailsByRecipeId(recipeId);
+            await _recipeRepo.DeleteRecipe(recipeId);
         }
     }
 }

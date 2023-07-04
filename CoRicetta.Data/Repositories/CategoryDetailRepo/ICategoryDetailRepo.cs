@@ -7,5 +7,6 @@ namespace CoRicetta.Data.Repositories.CategoryDetailRepo
     {
         Task CreateCategoryDetail(RecipeFormViewModel model, int recipeId);
         Task UpdateCategoryDetail(RecipeFormViewModel model, int recipeId);
+        Task DeleteCategoryDetailByRecipeId(int recipeId);
     }
 }

@@ -11,5 +11,6 @@ namespace CoRicetta.Data.Repositories.ReportRepo
         Task ApproveReport(ReportRequestFormModel model);
         Task RejectReport(ReportRequestFormModel model);
         Task<ViewReport> FindReport(ReportRequestFormModel model);
+        Task DeleteReportsByRecipeId(int recipeId);
     }
 }

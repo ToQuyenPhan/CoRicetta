@@ -83,6 +83,22 @@ namespace CoRicetta.Data.Repositories.ReportRepo
             return (item != null) ? item : null;
         }
 
+        public async Task DeleteReportsByRecipeId(int recipeId)
+        {
+            var query = from r in context.Reports where r.RecipeId.Equals(recipeId) select r;
+            List<Report> items = await query.Select(selector => new Report
+            {
+                UserId = selector.UserId,
+                RecipeId = selector.RecipeId,
+                Description = selector.Description,
+                Status = selector.Status
+            }).ToListAsync();
+            if (items.Count() > 0)
+            {
+                await DeleteRangeAsync(items);
+            }
+        }
+
         private async Task<Report> GetReport(ReportRequestFormModel model)
         {
             var query = from r in context.Reports

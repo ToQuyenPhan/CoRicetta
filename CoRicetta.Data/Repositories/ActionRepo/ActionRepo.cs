@@ -55,6 +55,25 @@ namespace CoRicetta.Data.Repositories.ActionRepo
             }
         }
 
+        public async Task DeleteActionsByRecipeId(int recipeId)
+        {
+            var query = from a in context.Actions where a.RecipeId.Equals(recipeId) select a;
+            List<Action> items = await query.Select(selector => new Action
+            {
+                Id = selector.Id,
+                UserId = selector.UserId,
+                RecipeId = selector.RecipeId,
+                Type = selector.Type,
+                Content = selector.Content,
+                DateTime = selector.DateTime,
+                Status = selector.Status
+            }).ToListAsync();
+            if (items.Count() > 0)
+            {
+                await DeleteRangeAsync(items);
+            }
+        }
+
         public async Task CreateAction(ActionFormModel model, int userId)
         {
             var action = new Action
