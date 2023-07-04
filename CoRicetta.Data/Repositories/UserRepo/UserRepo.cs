@@ -68,9 +68,47 @@ namespace CoRicetta.Data.Repositories.UserRepo
                 PhoneNumber = (!string.IsNullOrEmpty(selector.PhoneNumber)) ? selector.PhoneNumber : "",
                 Role = selector.Role,
                 Status = (UserStatus)selector.Status,
-            }
-                                          ).FirstOrDefaultAsync();
+            }).FirstOrDefaultAsync();
              return item;
+        }
+
+        public async Task CreateUser(UserFormViewModel model)
+        {
+            var user = new User
+            {
+                UserName = model.UserName,
+                Password = model.Password,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Role = model.Role,
+                Status = (int)model.Status,
+            };
+            await CreateAsync(user);
+        }
+
+        public async Task UpdateUser(UserFormViewModel model, int userId)
+        {
+            var user = new User
+            {
+                Id = (int)model.UserId,
+                UserName = model.UserName,
+                Password = model.Password,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Role = model.Role,
+                Status = (int)model.Status,
+            };
+            await UpdateAsync(user);
+        }
+
+        public async Task DeleteUser(int userId)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                user.Status = (int)UserStatus.InActive;
+                await UpdateAsync(user);
+            }
         }
     }
 }

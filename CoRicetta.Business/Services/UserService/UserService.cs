@@ -123,6 +123,37 @@ namespace CoRicetta.Business.Services.UserService
                 throw new ArgumentException("Something went wrong, please try again later!");
             }
         }
+
+        public async Task CreateUser(UserFormViewModel model, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            await _userRepo.CreateUser(model);
+        }
+
+        public async Task UpdateUser(UserFormViewModel model, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            int userId = _decodeToken.Decode(token, "Id");
+            await _userRepo.UpdateUser(model, userId);
+        }
+
+        public async Task DeleteUser(string token, int userId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            await _userRepo.DeleteUser(userId);
+        }
     }
 }
 

@@ -109,5 +109,68 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("create")]
+        [SwaggerOperation(Summary = "Create an user in CoRicetta")]
+        public async Task<ActionResult> CreateUser([FromBody] UserFormViewModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _userService.CreateUser(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("update")]
+        [SwaggerOperation(Summary = "Update an user in CoRicetta")]
+        public async Task<ActionResult> UpdateUser([FromBody] UserFormViewModel model)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _userService.UpdateUser(model, token);
+                return Ok();
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [SwaggerOperation(Summary = "Delete an user by id of CoRicetta")]
+        public async Task<IActionResult> DeleteUser(int userId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                await _userService.DeleteUser(token, userId);
+                return Ok("Deleted");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

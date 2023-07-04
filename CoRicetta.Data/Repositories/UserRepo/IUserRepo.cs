@@ -10,5 +10,8 @@ namespace CoRicetta.Data.Repositories.UserRepo
         Task<bool> CheckEmailAndPassword(string email, string password);
         Task<PagingResultViewModel<ViewUser>> GetUsers(PagingRequestViewModel request);
         Task<ViewUser> GetUserById(int userId);
+        Task CreateUser(UserFormViewModel model);
+        Task UpdateUser(UserFormViewModel model, int userId);
+        Task DeleteUser(int userId);
     }
 }
