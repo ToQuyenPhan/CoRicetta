@@ -134,15 +134,11 @@ namespace CoRicetta.Business.Services.UserService
             await _userRepo.CreateUser(model);
         }
 
-        public async Task UpdateUser(UserFormViewModel model, string token)
+        public async Task UpdateUser(UserFormViewModel model)
         {
-            string role = _decodeToken.DecodeText(token, "Role");
-            if (role.Equals("USER"))
-            {
-                throw new UnauthorizedAccessException("You do not have permission to do this action!");
-            }
-            int userId = _decodeToken.Decode(token, "Id");
-            await _userRepo.UpdateUser(model, userId);
+            var user = await _userRepo.GetUserById((int)model.UserId);
+            if (user == null) throw new NullReferenceException("Not found any users!");
+            await _userRepo.UpdateUser(model);
         }
 
         public async Task DeleteUser(string token, int userId)

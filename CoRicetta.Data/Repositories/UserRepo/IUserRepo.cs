@@ -11,7 +11,7 @@ namespace CoRicetta.Data.Repositories.UserRepo
         Task<PagingResultViewModel<ViewUser>> GetUsers(PagingRequestViewModel request);
         Task<ViewUser> GetUserById(int userId);
         Task CreateUser(UserFormViewModel model);
-        Task UpdateUser(UserFormViewModel model, int userId);
+        Task UpdateUser(UserFormViewModel model);
         Task DeleteUser(int userId);
     }
 }

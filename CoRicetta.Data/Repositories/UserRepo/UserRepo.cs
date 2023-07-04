@@ -86,19 +86,29 @@ namespace CoRicetta.Data.Repositories.UserRepo
             await CreateAsync(user);
         }
 
-        public async Task UpdateUser(UserFormViewModel model, int userId)
+        public async Task UpdateUser(UserFormViewModel model)
         {
-            var user = new User
+            var query = from u in context.Users where u.Id.Equals((int)model.UserId) select u;
+            User user = await query.Select(selector => new User
             {
-                Id = (int)model.UserId,
-                UserName = model.UserName,
-                Password = model.Password,
-                Email = model.Email,
-                PhoneNumber = model.PhoneNumber,
-                Role = model.Role,
-                Status = (int)model.Status,
-            };
-            await UpdateAsync(user);
+                Id = selector.Id,
+                UserName = selector.UserName,
+                Password = selector.Password,
+                Email = selector.Email,
+                PhoneNumber = selector.PhoneNumber,
+                Role = selector.Role,
+                Status = selector.Status,
+            }).FirstOrDefaultAsync();
+            if(user != null)
+            {
+                user.UserName = model.UserName;
+                user.Password = model.Password;
+                user.Email = model.Email;
+                user.PhoneNumber = model.PhoneNumber.ToString();
+                user.Role = model.Role;
+                user.Status = (int)model.Status;
+                await UpdateAsync(user);
+            }  
         }
 
         public async Task DeleteUser(int userId)

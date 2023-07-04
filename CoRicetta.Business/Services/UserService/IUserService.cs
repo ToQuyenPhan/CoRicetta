@@ -11,7 +11,7 @@ namespace CoRicetta.Business.Services.UserService
         Task<string> SignUpAsync(UserRegisterViewModel model);
         Task<ViewUser> GetUserById(string token,int userId);
         Task CreateUser(UserFormViewModel model, string token);
-        Task UpdateUser(UserFormViewModel model, string token);
+        Task UpdateUser(UserFormViewModel model);
         Task DeleteUser(string token, int userId);
     }
 }

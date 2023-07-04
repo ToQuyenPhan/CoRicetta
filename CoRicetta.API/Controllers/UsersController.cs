@@ -135,13 +135,16 @@ namespace CoRicetta.API.Controllers
         {
             try
             {
-                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                await _userService.UpdateUser(model, token);
+                await _userService.UpdateUser(model);
                 return Ok();
             }
             catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
