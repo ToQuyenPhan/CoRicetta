@@ -81,7 +81,7 @@ namespace CoRicetta.Data.Repositories.UserRepo
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 Role = model.Role,
-                Status = (int)model.Status,
+                Status = (int)UserStatus.Active,
             };
             await CreateAsync(user);
         }
