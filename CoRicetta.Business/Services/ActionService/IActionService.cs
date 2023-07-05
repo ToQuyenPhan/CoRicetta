@@ -10,5 +10,6 @@ namespace CoRicetta.Business.Services.ActionService
         public void DeleteAction(string token, int actionId);
         Task CreateAction(ActionFormModel model, string token);
         Task<ViewAction> GetLike(string token, ActionRequestModel request);
+        Task UpdateComment(ActionFormModel model, string token, int actionId);
     }
 }

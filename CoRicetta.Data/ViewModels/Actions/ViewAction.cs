@@ -23,6 +23,9 @@ namespace CoRicetta.Data.ViewModels.Actions
 
         [JsonPropertyName("date_time")]
         public DateTime DateTime { get; set; }
+
+        [JsonPropertyName("date_time_str")]
+        public string DateTimeString { get; set; }
         public int Status { get; set; }
 
         [JsonPropertyName("username")]

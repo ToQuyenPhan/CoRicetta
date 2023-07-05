@@ -62,5 +62,17 @@ namespace CoRicetta.Business.Services.ActionService
             if (action == null) throw new NullReferenceException("Not found any action");
             return action;
         }
+
+        public async Task UpdateComment(ActionFormModel model, string token, int actionId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            var action = await _actionRepo.GetActionById(actionId);
+            if (action == null) throw new NullReferenceException("Not found any actions!");
+            await _actionRepo.UpdateComment(model, actionId);
+        }
     }
 }

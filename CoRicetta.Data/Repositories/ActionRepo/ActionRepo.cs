@@ -37,10 +37,10 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                                               Content = selector.a.Content,
                                               Type = ((ActionType)selector.a.Type),
                                               DateTime = selector.a.DateTime,
+                                              DateTimeString = selector.a.DateTime.ToString(),
                                               Status = selector.a.Status,
                                               Username = selector.u.UserName
-                                          }
-                                          ).OrderByDescending(a => a.DateTime).ToListAsync();
+                                          }).OrderByDescending(a => a.DateTime).ToListAsync();
 
             return (items.Count() > 0) ? new PagingResultViewModel<ViewAction>(items, totalCount, request.CurrentPage, request.PageSize) : null;
         }
@@ -104,9 +104,47 @@ namespace CoRicetta.Data.Repositories.ActionRepo
                 Content = selector.a.Content,
                 Type = ((ActionType)selector.a.Type),
                 DateTime = selector.a.DateTime,
+                DateTimeString = selector.a.DateTime.ToString(),
                 Status = selector.a.Status,
                 Username = selector.u.UserName
             }).FirstOrDefaultAsync();
+        }
+
+        public async Task UpdateComment(ActionFormModel model, int actionId)
+        {
+            var query = from a in context.Actions where a.Id.Equals(actionId) select a;
+            Action action = await query.Select(selector => new Action
+            {
+                Id = selector.Id,
+                UserId = selector.UserId,
+                RecipeId = selector.RecipeId,
+                Type = selector.Type,
+                Content = selector.Content,
+                DateTime = selector.DateTime,
+                Status = selector.Status
+            }).FirstOrDefaultAsync();
+            action.Content = model.Content;
+            action.DateTime = System.DateTime.Now.ToLocalTime();
+            await UpdateAsync(action);
+        }
+
+        public async Task<ViewAction> GetActionById(int actionId)
+        {
+            var query = from a in context.Actions join u in context.Users on a.UserId equals u.Id
+                        where a.Id.Equals(actionId) select new { a, u};
+            ViewAction action = await query.Select(selector => new ViewAction
+            {
+                Id = selector.a.Id,
+                UserId = selector.a.UserId,
+                RecipeId = selector.a.RecipeId,
+                Type = (ActionType)selector.a.Type,
+                Content = selector.a.Content,
+                DateTime = selector.a.DateTime,
+                DateTimeString = selector.a.DateTime.ToString(),
+                Status = selector.a.Status,
+                Username = selector.u.UserName
+            }).FirstOrDefaultAsync();
+            return (action != null) ? action : null;
         }
     }
 }

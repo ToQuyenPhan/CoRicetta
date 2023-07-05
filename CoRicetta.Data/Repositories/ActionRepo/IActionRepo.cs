@@ -11,5 +11,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
         Task CreateAction(ActionFormModel model, int userId);
         Task<ViewAction> GetLike(ActionRequestModel model);
         Task DeleteActionsByRecipeId(int recipeId);
+        Task UpdateComment(ActionFormModel model, int actionId);
+        Task<ViewAction> GetActionById(int actionId);
     }
 }
