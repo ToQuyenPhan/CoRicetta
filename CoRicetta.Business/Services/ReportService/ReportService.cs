@@ -4,16 +4,37 @@ using System.Threading.Tasks;
 using System;
 using CoRicetta.Data.ViewModels.Reports;
 using CoRicetta.Data.ViewModels.Paging;
+using CoRicetta.Data.Repositories.ActionRepo;
+using CoRicetta.Data.Repositories.CategoryDetailRepo;
+using CoRicetta.Data.Repositories.MenuDetailRepo;
+using CoRicetta.Data.Repositories.RecipeDetailRepo;
+using CoRicetta.Data.Repositories.RecipeRepo;
+using CoRicetta.Data.Repositories.StepRepo;
+using CoRicetta.Data.Models;
 
 namespace CoRicetta.Business.Services.ReportService
 {
     public class ReportService : IReportService
     {
         private IReportRepo _reportRepo;
+        private IRecipeRepo _recipeRepo;
+        private IRecipeDetailRepo _recipeDetailRepo;
+        private IStepRepo _stepRepo;
+        private ICategoryDetailRepo _categoryDetailRepo;
+        private IActionRepo _actionRepo;
+        private IMenuDetailRepo _menuDetailRepo;
         private DecodeToken _decodeToken;
 
-        public ReportService(IReportRepo reportRepo) { 
-            _reportRepo = reportRepo; 
+        public ReportService(IRecipeRepo recipeRepo, IRecipeDetailRepo recipeDetailRepo, IStepRepo stepRepo,
+            ICategoryDetailRepo categoryDetailRepo, IActionRepo actionRepo, IReportRepo reportRepo,
+            IMenuDetailRepo menuDetailRepo) {
+            _recipeRepo = recipeRepo;
+            _recipeDetailRepo = recipeDetailRepo;
+            _stepRepo = stepRepo;
+            _categoryDetailRepo = categoryDetailRepo;
+            _actionRepo = actionRepo;
+            _reportRepo = reportRepo;
+            _menuDetailRepo = menuDetailRepo;
             _decodeToken = new DecodeToken();
         }
 
@@ -91,7 +112,15 @@ namespace CoRicetta.Business.Services.ReportService
             {
                 throw new UnauthorizedAccessException("You do not have permission to do this action!");
             }
-            await _reportRepo.ApproveReport(model);
+            var recipe = await _recipeRepo.GetRecipeById(model.RecipeId);
+            if (recipe == null) throw new NullReferenceException("Not found any reicpes!");
+            await _categoryDetailRepo.DeleteCategoryDetailByRecipeId(model.RecipeId);
+            await _recipeDetailRepo.DeleteRecipeDetailByRecipeId(model.RecipeId);
+            await _stepRepo.DeleteStepsByRecipeId(model.RecipeId);
+            await _actionRepo.DeleteActionsByRecipeId(model.RecipeId);
+            await _menuDetailRepo.DeleteMenuDetailsByRecipeId(model.RecipeId);
+            await _reportRepo.DeleteReportsByRecipeId(model.RecipeId);
+            await _recipeRepo.DeleteRecipe(model.RecipeId);
         }
 
         public async Task RejectReport(ReportRequestFormModel model, string token)
