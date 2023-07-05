@@ -9,7 +9,7 @@ namespace CoRicetta.Business.Services.UserService
         Task<string> Login(UserLoginViewModel model);
         Task<PagingResultViewModel<ViewUser>> GetUsers(string token, PagingRequestViewModel request);
         Task<string> SignUpAsync(UserRegisterViewModel model);
-        Task<ViewUser> GetUserById(string token,int userId);
+        Task<ViewUser> GetUserById(int userId);
         Task CreateUser(UserFormViewModel model, string token);
         Task UpdateUser(UserFormViewModel model);
         Task DeleteUser(string token, int userId);

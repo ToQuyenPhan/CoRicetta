@@ -102,15 +102,10 @@ namespace CoRicetta.Business.Services.UserService
             }
         }
 
-        public async Task<ViewUser> GetUserById(string token, int userId)
+        public async Task<ViewUser> GetUserById(int userId)
         {
             try
             {
-                string role = _decodeToken.DecodeText(token, "Role");
-                if (role.Equals("ADMIN"))
-                {
-                    throw new UnauthorizedAccessException("You do not have permission to access this resource!");
-                }
                 var recipe = await _userRepo.GetUserById(userId);
                 if (recipe == null)
                 {

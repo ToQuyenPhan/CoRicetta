@@ -92,8 +92,7 @@ namespace CoRicetta.API.Controllers
         {
             try
             {
-                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var users = await _userService.GetUserById(token, userId);
+                var users = await _userService.GetUserById(userId);
                 return Ok(users);
             }
             catch (UnauthorizedAccessException ex)
