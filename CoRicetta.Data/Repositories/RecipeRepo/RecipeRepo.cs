@@ -153,19 +153,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
             await DeleteAsync(recipe);
         }
 
-        private async Task<List<ViewCategory>> GetCategoriesInRecipe(int recipeId)
-        {
-            return await (from cd in context.CategoryDetails
-                          join c in context.Categories on cd.CategoryId equals c.Id
-                          where cd.RecipeId.Equals(recipeId)
-                          select new ViewCategory
-                          {
-                              Id = c.Id,
-                              CategoryName = c.CategoryName
-                          }).ToListAsync();
-        }
-
-        private async Task<List<ViewIngredient>> GetIngridientsInRecipe(int recipeId)
+        public async Task<List<ViewIngredient>> GetIngridientsInRecipe(int recipeId)
         {
             return await (from rd in context.RecipeDetails
                           join i in context.Ingredients on rd.IngredientId equals i.Id
@@ -177,6 +165,18 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
                               Quantity = rd.Quantity,
                               Measurement = i.Measurement,
                               Calories = i.Calories
+                          }).ToListAsync();
+        }
+
+        private async Task<List<ViewCategory>> GetCategoriesInRecipe(int recipeId)
+        {
+            return await (from cd in context.CategoryDetails
+                          join c in context.Categories on cd.CategoryId equals c.Id
+                          where cd.RecipeId.Equals(recipeId)
+                          select new ViewCategory
+                          {
+                              Id = c.Id,
+                              CategoryName = c.CategoryName
                           }).ToListAsync();
         }
 

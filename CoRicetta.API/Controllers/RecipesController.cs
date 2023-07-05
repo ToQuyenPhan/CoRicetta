@@ -131,5 +131,24 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("shopping/{recipeId}")]
+        [SwaggerOperation(Summary = "Get shopping list by recipeId in CoRicetta")]
+        public async Task<ActionResult> GetShoppingListWithRecipeById(int recipeId)
+        {
+            try
+            {
+                var ingredient = await _recipeService.GetShoppingListWithId(recipeId);
+                return Ok(ingredient);
+            }
+            catch (ArgumentException ex)
+            {
+                return Ok(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
