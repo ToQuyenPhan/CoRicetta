@@ -1,0 +1,15 @@
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\bin\Debug\net5.0\CoRicetta.Business.deps.json
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\bin\Debug\net5.0\CoRicetta.Business.dll
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\bin\Debug\net5.0\CoRicetta.Business.pdb
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\bin\Debug\net5.0\CoRicetta.Data.dll
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\bin\Debug\net5.0\CoRicetta.Data.pdb
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.csproj.AssemblyReference.cache
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.AssemblyInfoInputs.cache
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.AssemblyInfo.cs
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.csproj.CoreCompileInputs.cache
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.csproj.CopyComplete
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.dll
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\refint\CoRicetta.Business.dll
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\CoRicetta.Business.pdb
+D:\PRN231\GroupProject\CoRicetta\CoRicetta.Business\obj\Debug\net5.0\ref\CoRicetta.Business.dll

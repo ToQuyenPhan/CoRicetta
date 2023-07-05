@@ -7802,19 +7802,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lennovo\\.nuget\\packages\\": {}
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+      "projectUniqueName": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
       "projectName": "CoRicetta.Data",
-      "projectPath": "E:\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
-      "packagesPath": "C:\\Users\\lennovo\\.nuget\\packages\\",
-      "outputPath": "E:\\CoRicetta\\CoRicetta.Data\\obj\\",
+      "projectPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\CoRicetta.Data.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "D:\\PRN231\\GroupProject\\CoRicetta\\CoRicetta.Data\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\lennovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7822,6 +7827,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7879,7 +7885,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
