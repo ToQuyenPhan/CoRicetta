@@ -6,9 +6,11 @@ using CoRicetta.Data.Repositories.RecipeDetailRepo;
 using CoRicetta.Data.Repositories.RecipeRepo;
 using CoRicetta.Data.Repositories.ReportRepo;
 using CoRicetta.Data.Repositories.StepRepo;
+using CoRicetta.Data.ViewModels.Ingredients;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Recipes;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.RecipeService
@@ -74,7 +76,7 @@ namespace CoRicetta.Business.Services.RecipeService
                 var recipe = await _recipeRepo.GetRecipeById(recipeId);
                 if (recipe == null)
                 {
-                    throw new ArgumentException("The recipe does not exist.");
+                    throw new ArgumentException("The ingredient does not exist.");
                 }
                 return recipe;
             }
@@ -129,6 +131,23 @@ namespace CoRicetta.Business.Services.RecipeService
             await _reportRepo.DeleteReportsByRecipeId(recipeId);
             await _menuDetailRepo.DeleteMenuDetailsByRecipeId(recipeId);
             await _recipeRepo.DeleteRecipe(recipeId);
+        }
+
+        public async Task<List<ViewIngredient>> getShoppingListWithId(int recipeId)
+        {
+            try
+            {
+                var ingredient = await _recipeRepo.GetIngridientsInRecipe(recipeId);
+                if (ingredient == null)
+                {
+                    throw new ArgumentException("The ingredient does not exist.");
+                }
+                return ingredient;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Something went wrong, please try again later!");
+            }
         }
     }
 }

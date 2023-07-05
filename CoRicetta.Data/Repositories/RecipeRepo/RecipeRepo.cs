@@ -165,7 +165,7 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
                           }).ToListAsync();
         }
 
-        private async Task<List<ViewIngredient>> GetIngridientsInRecipe(int recipeId)
+        public async Task<List<ViewIngredient>> GetIngridientsInRecipe(int recipeId)
         {
             return await (from rd in context.RecipeDetails
                           join i in context.Ingredients on rd.IngredientId equals i.Id
