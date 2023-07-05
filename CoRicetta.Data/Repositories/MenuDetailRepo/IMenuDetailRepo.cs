@@ -7,5 +7,6 @@ namespace CoRicetta.Data.Repositories.MenuDetailRepo
     {
         Task CreateMenuDetail(MenuFormViewModel model, int menuId);
         Task DeleteMenuDetailsByRecipeId(int recipeId);
+        Task DeleteMenuDetailsByMenuId(int menuId);
     }
 }

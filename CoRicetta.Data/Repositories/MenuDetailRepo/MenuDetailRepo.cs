@@ -34,5 +34,19 @@ namespace CoRicetta.Data.Repositories.MenuDetailRepo
                 await DeleteRangeAsync(items);
             }
         }
+
+        public async Task DeleteMenuDetailsByMenuId(int menuId)
+        {
+            var query = from md in context.MenuDetails where md.MenuId.Equals(menuId) select md;
+            List<MenuDetail> items = await query.Select(selector => new MenuDetail
+            {
+                MenuId = selector.MenuId,
+                RecipeId = selector.RecipeId
+            }).ToListAsync();
+            if (items.Count() > 0)
+            {
+                await DeleteRangeAsync(items);
+            }
+        }
     }
 }

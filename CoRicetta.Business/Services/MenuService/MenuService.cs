@@ -11,11 +11,13 @@ namespace CoRicetta.Business.Services.MenuService
     public class MenuService : IMenuService
     {
         private IMenuRepo _menuRepo;
+        private IMenuDetailRepo _menuDetailRepo;
         private DecodeToken _decodeToken;
 
         public MenuService(IMenuRepo menuRepo, IMenuDetailRepo menuDetailRepo)
         {
             _menuRepo = menuRepo;
+            _menuDetailRepo = menuDetailRepo;
             _decodeToken = new DecodeToken();
         }
 
@@ -91,6 +93,7 @@ namespace CoRicetta.Business.Services.MenuService
             }
             var menu = await _menuRepo.GetMenuById(menuId);
             if (menu == null) throw new NullReferenceException("Not found any menus!");
+            await _menuDetailRepo.DeleteMenuDetailsByMenuId(menuId);
             await _menuRepo.DeleteMenu(menu.Id);
         }
     }
