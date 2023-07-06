@@ -51,13 +51,23 @@ namespace CoRicetta.Data.Repositories.MenuDetailRepo
 
         public async Task AddRecipe(int menuId, int recipeId)
         {
-            var menu = new MenuDetail
-            {
-                MenuId = menuId,
-                RecipeId = recipeId,
-            };
-            context.Add(menu);
-            context.SaveChanges();
+            bool check = false;
+            var menuDetails = context.MenuDetails.Where(md => md.MenuId == menuId);
+            foreach (var element in menuDetails)
+                if (element.RecipeId == recipeId)
+                {
+                    check = true;
+                }
+
+                if(check == false){
+                var menu = new MenuDetail
+                {
+                    MenuId = menuId,
+                    RecipeId = recipeId,
+                };
+                context.Add(menu);
+                context.SaveChanges();
+            }
         }
     }
 }

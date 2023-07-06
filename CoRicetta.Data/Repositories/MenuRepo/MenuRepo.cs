@@ -115,5 +115,26 @@ namespace CoRicetta.Data.Repositories.MenuRepo
             var query = from m in context.Menus where m.Id.Equals(menuId) select m;
             return query.FirstOrDefault();
         }
+
+        public async Task<PagingResultViewModel<ViewMenuByUserId>> GetWithUserId(MenuFilterRequestModel request)
+        {
+
+            var query = from m in context.Menus select m;
+            if (request.MenuStatus.HasValue) query = query.Where(selector => selector.Status.Equals(request.MenuStatus));
+            if (request.UserId.HasValue) query = query.Where(selector => selector.UserId.Equals(request.UserId));
+            if (!string.IsNullOrEmpty(request.MenuName)) query = query.Where(selector => selector.MenuName.Contains(request.MenuName));
+            int totalCount = query.Count();
+            List<ViewMenuByUserId> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
+                                          .Select(selector => new ViewMenuByUserId()
+                                          {
+                                              Id = selector.Id,
+                                              MenuName = selector.MenuName,
+                                              value = selector.Id,
+                                              label = selector.MenuName,
+                                          }
+                                          ).ToListAsync();
+            
+            return (items.Count() > 0) ? new PagingResultViewModel<ViewMenuByUserId>(items, totalCount, request.CurrentPage, request.PageSize) : null;
+        }
     }
 }

@@ -106,5 +106,17 @@ namespace CoRicetta.Business.Services.MenuService
             }
             await _menuDetailRepo.AddRecipe(menuId, recipeId);
         }
+
+        public async Task<PagingResultViewModel<ViewMenuByUserId>> GetWithUserId(string token, MenuFilterRequestModel request)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            PagingResultViewModel<ViewMenuByUserId> menus = await _menuRepo.GetWithUserId(request);
+            if (menus.Items == null) throw new NullReferenceException("Not found any menus");
+            return menus;
+        }
     }
 }

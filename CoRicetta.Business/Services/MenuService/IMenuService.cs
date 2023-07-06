@@ -12,6 +12,8 @@ namespace CoRicetta.Business.Services.MenuService
         Task UpdateMenu(MenuFormViewModel model, string token);
         Task DeleteMenu(int menuId, string token);
         Task AddRecipe(int menuId, int recipeId, string token);
+        Task<PagingResultViewModel<ViewMenuByUserId>> GetWithUserId(string token, MenuFilterRequestModel request);
+
 
     }
 }

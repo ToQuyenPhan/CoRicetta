@@ -135,7 +135,7 @@ namespace CoRicetta.API.Controllers
 
         [HttpPost("addRecipe")]
         [SwaggerOperation(Summary = "Add recipe to menu in CoRicetta")]
-        public async Task<ActionResult> AddRecipe([FromQuery] int menuId, int recipeId)
+        public async Task<ActionResult> AddRecipe([FromQuery] int menuId,[FromQuery] int recipeId)
         {
             try
             {
@@ -146,6 +146,30 @@ namespace CoRicetta.API.Controllers
             catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("allByUserId")]
+        [SwaggerOperation(Summary = "Get all menu by userid of CoRicetta")]
+        public async Task<IActionResult> GetWithUserId([FromQuery] MenuFilterRequestModel request)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var menus = await _menuService.GetWithUserId(token, request);
+                return Ok(menus);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
             }
             catch (Exception ex)
             {
