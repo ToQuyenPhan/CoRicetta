@@ -9,7 +9,8 @@ namespace CoRicetta.Business.Services.IngredientService
         Task<List<ViewIngredient>> GetActiveIngredients();
         Task UpdateIngredient(IngredientFormModel model, string token, int ingredientId);
         Task<ViewIngredient> GetIngredientById(string token, int ingredientId);
-        Task CreateIngredient(IngredientFormModel model, string token);
+        Task CreateIngredient(IngredientFormModel model);
         Task DeleteIngredient(int ingredientId, string token);
+        Task<List<ViewIngredient>> GetInactiveIngredients(string token);
     }
 }

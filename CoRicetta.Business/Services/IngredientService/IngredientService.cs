@@ -1,6 +1,7 @@
 ﻿using CoRicetta.Business.Utils;
 using CoRicetta.Data.Repositories.IngredientRepo;
 using CoRicetta.Data.ViewModels.Ingredients;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -49,13 +50,8 @@ namespace CoRicetta.Business.Services.IngredientService
             return ingredient;
         }
 
-        public async Task CreateIngredient(IngredientFormModel model, string token)
+        public async Task CreateIngredient(IngredientFormModel model)
         {
-            string role = _decodeToken.DecodeText(token, "Role");
-            if (role.Equals("USER"))
-            {
-                throw new UnauthorizedAccessException("You do not have permission to do this action!");
-            }
             var isExisted = await _ingredientRepo.IsExistedIngredient(model);
             if (isExisted) throw new ArgumentException("Nguyên liệu đã tồn tại!");
             await _ingredientRepo.CreateIngredient(model);
@@ -71,6 +67,18 @@ namespace CoRicetta.Business.Services.IngredientService
             var ingredient = await _ingredientRepo.GetIngredientById(ingredientId);
             if (ingredient == null) throw new NullReferenceException("Not found any ingredients!");
             await _ingredientRepo.DeleteIngredient(ingredientId);
+        }
+
+        public async Task<List<ViewIngredient>> GetInactiveIngredients(string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("USER"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            List<ViewIngredient> items = await _ingredientRepo.GetInactiveIngredients();
+            if (items == null) throw new NullReferenceException("Not found any ingredients");
+            return items;
         }
     }
 }

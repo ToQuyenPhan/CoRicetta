@@ -95,8 +95,7 @@ namespace CoRicetta.API.Controllers
         {
             try
             {
-                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                await _ingredientService.CreateIngredient(model, token);
+                await _ingredientService.CreateIngredient(model);
                 return Ok();
             }
             catch (UnauthorizedAccessException ex)
@@ -130,6 +129,30 @@ namespace CoRicetta.API.Controllers
             catch (NullReferenceException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("request")]
+        [SwaggerOperation(Summary = "Get all inactive ingredients of CoRicetta")]
+        public async Task<IActionResult> GetInactiveIngredients()
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var ingredients = await _ingredientService.GetInactiveIngredients(token);
+                return Ok(ingredients);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
             }
             catch (Exception ex)
             {

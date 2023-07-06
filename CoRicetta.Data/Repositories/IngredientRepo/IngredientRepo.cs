@@ -81,6 +81,7 @@ namespace CoRicetta.Data.Repositories.IngredientRepo
         {
             var query = from i in context.Ingredients 
                         where i.IngredientName.Equals(model.IngredientName.Trim()) && i.Measurement.Equals(model.Measurement.Trim())
+                        && i.Status.Equals((int) IngredientStatus.Active)
                         select i;
             var ingredient = await query.Select(selector => new ViewIngredient
             {
@@ -107,6 +108,22 @@ namespace CoRicetta.Data.Repositories.IngredientRepo
                 Status = selector.Status,
             }).FirstOrDefaultAsync();
             await DeleteAsync(ingredient);
+        }
+
+        public async Task<List<ViewIngredient>> GetInactiveIngredients()
+        {
+            var query = from i in context.Ingredients where i.Status.Equals((int)IngredientStatus.Inactive) select i;
+            List<ViewIngredient> items = await query.Select(i => new ViewIngredient
+            {
+                Id = i.Id,
+                IngredientName = i.IngredientName,
+                Quantity = 0,
+                Measurement = i.Measurement,
+                Calories = i.Calories,
+                Status = i.Status,
+                StatusString = (i.Status.Equals(1)) ? "Đang hiển thị" : "Không hiển thị"
+            }).ToListAsync();
+            return (items.Count() > 0) ? items : null;
         }
     }
 }

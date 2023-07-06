@@ -12,5 +12,6 @@ namespace CoRicetta.Data.Repositories.IngredientRepo
         Task CreateIngredient(IngredientFormModel model);
         Task<bool> IsExistedIngredient(IngredientFormModel model);
         Task DeleteIngredient(int ingredientId);
+        Task<List<ViewIngredient>> GetInactiveIngredients();
     }
 }
