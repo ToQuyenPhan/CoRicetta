@@ -11,5 +11,7 @@ namespace CoRicetta.Data.ViewModels.Ingredients
         public int Quantity { get; set; }
         public string Measurement { get; set; }
         public int Calories { get; set; }
+        public int Status { get; set; }
+        public string StatusString { get; set; }
     }
 }
