@@ -28,5 +28,65 @@ namespace CoRicetta.Data.Repositories.CategoryRepo
                                           }).ToListAsync();
             return items;
         }
+
+        public async Task CreateCategory(CategoryFormModel model)
+        {
+            var category = new Category
+            {
+                CategoryName = model.CategoryName,
+                Status = (int)model.Status
+            };
+            await CreateAsync(category);
+        }
+
+        public async Task<bool> IsExitedCategory(CategoryFormModel model)
+        {
+            var query = from c in context.Categories where c.CategoryName.Equals(model.CategoryName.Trim()) select c;
+            var category = await query.Select(selector => new Category()
+                                          {
+                                              Id = selector.Id,
+                                              CategoryName = selector.CategoryName,
+                                              Status = selector.Status
+                                          }).FirstOrDefaultAsync();
+            return (category != null) ? true : false;
+        }
+
+        public async Task UpdateCategory(CategoryFormModel model, int categoryId)
+        {
+            var query = from c in context.Categories where c.Id.Equals(categoryId) select c;
+            var category = await query.Select(selector => new Category()
+            {
+                Id = selector.Id,
+                CategoryName = selector.CategoryName,
+                Status = selector.Status
+            }).FirstOrDefaultAsync();
+            category.CategoryName = model.CategoryName;
+            category.Status = (int)model.Status;
+            await UpdateAsync(category);
+        }
+
+        public async Task<ViewCategory> GetCategoryById(int categoryId)
+        {
+            var query = from c in context.Categories where c.Id.Equals(categoryId) select c;
+            ViewCategory item = await query.Select(selector => new ViewCategory()
+                                          {
+                                              Id = selector.Id,
+                                              CategoryName = selector.CategoryName,
+                                              Status = selector.Status
+                                          }).FirstOrDefaultAsync();
+            return (item != null) ? item : null;
+        }
+
+        public async Task DeleteCategory(int categoryId)
+        {
+            var query = from c in context.Categories where c.Id.Equals(categoryId) select c;
+            var category = await query.Select(selector => new Category()
+            {
+                Id = selector.Id,
+                CategoryName = selector.CategoryName,
+                Status = selector.Status
+            }).FirstOrDefaultAsync();
+            await DeleteAsync(category);
+        }
     }
 }
