@@ -89,14 +89,14 @@ namespace CoRicetta.API.Controllers
             }
         }
 
-        [HttpGet("getLike")]
+        [HttpGet("getAction")]
         [SwaggerOperation(Summary = "Get an action in CoRicetta")]
-        public async Task<IActionResult> GetLike([FromQuery] ActionRequestModel request)
+        public async Task<IActionResult> GetAction([FromQuery] ActionRequestModel request)
         {
             try
             {
                 string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var action = await _actionService.GetLike(token, request);
+                var action = await _actionService.GetAction(token, request);
                 return Ok(action);
             }
             catch (UnauthorizedAccessException ex)

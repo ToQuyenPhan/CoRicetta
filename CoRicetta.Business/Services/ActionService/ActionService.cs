@@ -51,14 +51,14 @@ namespace CoRicetta.Business.Services.ActionService
             await _actionRepo.CreateAction(model, userId);
         }
 
-        public async Task<ViewAction> GetLike(string token, ActionRequestModel request)
+        public async Task<ViewAction> GetAction(string token, ActionRequestModel request)
         {
             string role = _decodeToken.DecodeText(token, "Role");
             if (role.Equals("ADMIN"))
             {
                 throw new UnauthorizedAccessException("You do not have permission to access this resource!");
             }
-            ViewAction action = await _actionRepo.GetLike(request);
+            ViewAction action = await _actionRepo.GetAction(request);
             if (action == null) throw new NullReferenceException("Not found any action");
             return action;
         }

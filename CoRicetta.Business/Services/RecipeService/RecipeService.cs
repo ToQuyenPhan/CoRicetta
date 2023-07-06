@@ -69,6 +69,35 @@ namespace CoRicetta.Business.Services.RecipeService
             return recipes;
         }
 
+        public async Task<PagingResultViewModel<ViewRecipe>> GetSharedRecipes(string token, RecipeFilterRequestModel request)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("Bạn không có quyền truy cập vào tài nguyên này!");
+            }
+            PagingResultViewModel<ViewRecipe> recipes = await _recipeRepo.GetSharedRecipes(request);
+            if (recipes.Items == null) throw new NullReferenceException("Not found any recipes");
+            foreach (var recipe in recipes.Items)
+            {
+                switch (recipe.Level.ToString())
+                {
+                    case "Easy":
+                        recipe.Level = "Dễ";
+                        break;
+                    case "Normal":
+                        recipe.Level = "Trung bình";
+                        break;
+                    case "Hard":
+                        recipe.Level = "Khó";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return recipes;
+        }
+
         public async Task<ViewRecipe> getById(int recipeId)
         {
             try

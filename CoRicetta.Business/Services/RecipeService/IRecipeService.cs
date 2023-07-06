@@ -14,5 +14,6 @@ namespace CoRicetta.Business.Services.RecipeService
         Task UpdateRecipe(RecipeFormViewModel model, string token, int recipeId);
         Task DeleteRecipe(string token, int recipeId);
         Task<List<ViewIngredient>> GetShoppingListWithId(int recipeId);
+        Task<PagingResultViewModel<ViewRecipe>> GetSharedRecipes(string token, RecipeFilterRequestModel request);
     }
 }

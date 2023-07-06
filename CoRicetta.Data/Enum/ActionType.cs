@@ -4,6 +4,7 @@
     {
         Comment,
         Like,
-        Save
+        Save,
+        Share
     }
 }

@@ -88,7 +88,7 @@ namespace CoRicetta.Data.Repositories.ActionRepo
             await CreateAsync(action);
         }
 
-        public async Task<ViewAction> GetLike(ActionRequestModel model)
+        public async Task<ViewAction> GetAction(ActionRequestModel model)
         {
             var query = from a in context.Actions
                         join u in context.Users on a.UserId equals u.Id

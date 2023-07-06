@@ -28,8 +28,8 @@ namespace CoRicetta.API.Controllers
             try
             {
                 string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
-                var users = await _recipeService.GetRecipes(token, request);
-                return Ok(users);
+                var recipes = await _recipeService.GetRecipes(token, request);
+                return Ok(recipes);
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -144,6 +144,30 @@ namespace CoRicetta.API.Controllers
             catch (ArgumentException ex)
             {
                 return Ok(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("shared")]
+        [SwaggerOperation(Summary = "Get shared recipes of CoRicetta")]
+        public async Task<IActionResult> GetSharedRecipes([FromQuery] RecipeFilterRequestModel request)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var recipes = await _recipeService.GetSharedRecipes(token, request);
+                return Ok(recipes);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
             }
             catch (Exception ex)
             {

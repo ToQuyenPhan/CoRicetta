@@ -153,6 +153,53 @@ namespace CoRicetta.Data.Repositories.RecipeRepo
             await DeleteAsync(recipe);
         }
 
+
+        public async Task<PagingResultViewModel<ViewRecipe>> GetSharedRecipes(RecipeFilterRequestModel request)
+        {
+            var query = from a in context.Actions
+                        join rc in context.Recipes on a.RecipeId equals rc.Id
+                        join u in context.Users on rc.UserId equals u.Id
+                        where a.Type.Equals((int)ActionType.Share)
+                        select new { a, rc, u };
+            if (request.UserId.HasValue) query = query.Where(selector => selector.a.UserId.Equals(request.UserId));
+            int totalCount = query.Count();
+            List<ViewRecipe> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
+                                          .Select(selector => new ViewRecipe()
+                                          {
+                                              Id = selector.rc.Id,
+                                              UserId = selector.rc.UserId,
+                                              UserName = selector.u.UserName,
+                                              RecipeName = selector.rc.RecipeName,
+                                              Level = selector.rc.Level,
+                                              PrepareTime = selector.rc.PrepareTime,
+                                              CookTime = selector.rc.CookTime,
+                                              Image = selector.rc.Image,
+                                              Description = selector.rc.Description,
+                                              Status = ((RecipeStatus)selector.rc.Status).ToString(),
+                                          }
+                                          ).ToListAsync();
+            foreach (var element in items)
+            {
+                element.Categories = await GetCategoriesInRecipe(element.Id);
+            }
+            if (request.CategoryId.HasValue)
+            {
+                List<ViewRecipe> temp = new List<ViewRecipe>();
+                foreach (var recipe in items)
+                {
+                    foreach (var category in recipe.Categories)
+                    {
+                        if (category.Id == request.CategoryId)
+                        {
+                            temp.Add(recipe);
+                        }
+                    }
+                }
+                items = temp;
+            }
+            return (items.Count() > 0) ? new PagingResultViewModel<ViewRecipe>(items, totalCount, request.CurrentPage, request.PageSize) : null;
+        }
+
         public async Task<List<ViewIngredient>> GetIngridientsInRecipe(int recipeId)
         {
             return await (from rd in context.RecipeDetails
