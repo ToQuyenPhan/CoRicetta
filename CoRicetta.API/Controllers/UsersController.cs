@@ -123,11 +123,16 @@ namespace CoRicetta.API.Controllers
             {
                 return Unauthorized(ex.Message);
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("update")]
         [SwaggerOperation(Summary = "Update an user in CoRicetta")]
         public async Task<ActionResult> UpdateUser([FromBody] UserFormViewModel model)

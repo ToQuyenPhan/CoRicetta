@@ -120,5 +120,21 @@ namespace CoRicetta.Data.Repositories.UserRepo
                 await UpdateAsync(user);
             }
         }
+
+        public async Task<bool> IsExistedEmail(UserFormViewModel model)
+        {
+            var query = from u in context.Users where u.Email.Equals(model.Email.Trim()) select u;
+            User user = await query.Select(selector => new User
+            {
+                Id = selector.Id,
+                UserName = selector.UserName,
+                Password = selector.Password,
+                Email = selector.Email,
+                PhoneNumber = selector.PhoneNumber,
+                Role = selector.Role,
+                Status = selector.Status,
+            }).FirstOrDefaultAsync();
+            return (user != null) ? true : false ;
+        }
     }
 }

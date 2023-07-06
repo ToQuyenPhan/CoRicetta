@@ -124,8 +124,10 @@ namespace CoRicetta.Business.Services.UserService
             string role = _decodeToken.DecodeText(token, "Role");
             if (role.Equals("USER"))
             {
-                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+                throw new UnauthorizedAccessException("Bạn không có quyền thực hiện hành động này!");
             }
+            var isExisted = await _userRepo.IsExistedEmail(model);
+            if (isExisted) throw new ArgumentException("Email đã tồn tại!");
             await _userRepo.CreateUser(model);
         }
 
