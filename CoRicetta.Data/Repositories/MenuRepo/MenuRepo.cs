@@ -48,7 +48,7 @@ namespace CoRicetta.Data.Repositories.MenuRepo
 
             var query = from m in context.Menus select m;
             if (request.MenuStatus.HasValue) query = query.Where(selector => selector.Status.Equals(request.MenuStatus));
-            if (request.UserId.HasValue) query = query.Where(selector => selector.UserId.Equals(request.UserId));
+            if (request.UserId.HasValue) query = query.Where(selector => selector.UserId.Equals((int)request.UserId));
             if (!string.IsNullOrEmpty(request.MenuName)) query = query.Where(selector => selector.MenuName.Contains(request.MenuName));
             int totalCount = query.Count();
             List<ViewMenu> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
