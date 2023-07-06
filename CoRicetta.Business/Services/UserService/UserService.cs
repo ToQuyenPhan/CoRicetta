@@ -7,6 +7,7 @@ using CoRicetta.Data.Repositories.UserRepo;
 using CoRicetta.Data.ViewModels.Paging;
 using CoRicetta.Data.ViewModels.Users;
 using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.UserService
@@ -70,11 +71,15 @@ namespace CoRicetta.Business.Services.UserService
         {
             try
             {
-                var user = await _genericRepo.FirstOrDefaultAsync(u => u.Email.Equals(model.Email));
-                if (user != null)
+                if (!model.Password.Equals(model.ConfirmPassword)) throw new ArgumentException("Confirm Password and Password does not match!");
+                var isExisted = await _userRepo.IsExistedEmail(model.Email);
+                if (isExisted)
                 {
                     throw new ArgumentException("Email already exists, please sign in instead.");
                 }
+                var regex = @"^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$";
+                var match = Regex.Match(model.PhoneNumber, regex, RegexOptions.IgnoreCase);
+                if (!match.Success) throw new ArgumentException("The phone number is invalid!");
                 var newUser = new User
                 {
                     UserName = model.Username,
@@ -97,8 +102,7 @@ namespace CoRicetta.Business.Services.UserService
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                throw new ArgumentException("Something went wrong, please try again later!");
+                throw new ArgumentException(ex.Message);
             }
         }
 
@@ -126,7 +130,7 @@ namespace CoRicetta.Business.Services.UserService
             {
                 throw new UnauthorizedAccessException("Bạn không có quyền thực hiện hành động này!");
             }
-            var isExisted = await _userRepo.IsExistedEmail(model);
+            var isExisted = await _userRepo.IsExistedEmail(model.Email);
             if (isExisted) throw new ArgumentException("Email đã tồn tại!");
             await _userRepo.CreateUser(model);
         }

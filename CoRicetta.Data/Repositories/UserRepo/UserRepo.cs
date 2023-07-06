@@ -121,9 +121,9 @@ namespace CoRicetta.Data.Repositories.UserRepo
             }
         }
 
-        public async Task<bool> IsExistedEmail(UserFormViewModel model)
+        public async Task<bool> IsExistedEmail(string email)
         {
-            var query = from u in context.Users where u.Email.Equals(model.Email.Trim()) select u;
+            var query = from u in context.Users where u.Email.Equals(email.Trim()) select u;
             User user = await query.Select(selector => new User
             {
                 Id = selector.Id,

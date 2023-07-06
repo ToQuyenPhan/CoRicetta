@@ -13,6 +13,6 @@ namespace CoRicetta.Data.Repositories.UserRepo
         Task CreateUser(UserFormViewModel model);
         Task UpdateUser(UserFormViewModel model);
         Task DeleteUser(int userId);
-        Task<bool> IsExistedEmail(UserFormViewModel model);
+        Task<bool> IsExistedEmail(string email);
     }
 }
