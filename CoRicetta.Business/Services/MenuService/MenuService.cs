@@ -96,5 +96,15 @@ namespace CoRicetta.Business.Services.MenuService
             await _menuDetailRepo.DeleteMenuDetailsByMenuId(menuId);
             await _menuRepo.DeleteMenu(menu.Id);
         }
+
+        public async Task AddRecipe(int menuId, int recipeId, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            await _menuDetailRepo.AddRecipe(menuId, recipeId);
+        }
     }
 }
