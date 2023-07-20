@@ -133,8 +133,61 @@ namespace CoRicetta.Data.Repositories.MenuRepo
                                               label = selector.MenuName,
                                           }
                                           ).ToListAsync();
-            
+
             return (items.Count() > 0) ? new PagingResultViewModel<ViewMenuByUserId>(items, totalCount, request.CurrentPage, request.PageSize) : null;
+        }
+
+        public List<MenuDetail> GetMenuIdExcept(int recipeId)
+        {
+            var query = from md in context.MenuDetails
+                        where (md.RecipeId == recipeId)
+                        select md;
+            List<MenuDetail> menuDetail =query.Select(selector => new MenuDetail()
+            {
+                MenuId = selector.MenuId,
+                RecipeId = selector.RecipeId
+            }).ToList();
+    
+            return menuDetail;
+        }
+
+        public async Task<List<ViewMenu>> GetWithUserIdExceptRecipeAdded(int userId, int recipeId)
+        {
+            List<MenuDetail> menuExcepts = GetMenuIdExcept(recipeId);
+            var query = from m in context.Menus
+                        where (m.Status.Equals(1))
+                        select m ;
+            query = query.Where(selector => selector.UserId.Equals(userId));
+            foreach( var item in menuExcepts )
+            query = query.Where(selector => selector.Id != item.MenuId);
+            int totalCount = query.Count();
+            List<ViewMenu> items = await query.Select(selector => new ViewMenu()
+            {
+                Id = selector.Id,
+                UserId = selector.UserId,
+                MenuName = selector.MenuName,
+                Description = selector.Description,
+                Status = (selector.Status.Equals(1)) ? "Public" : "Private"
+            }
+                                          ).ToListAsync();
+            /*foreach (var item in items)
+            {
+                item.Recipes = await GetRecipesInMenu(item.Id);
+            }*/
+            return items;
+        }
+
+        public async Task<bool> canAddRecipe(int menuId, int recipeId)
+        {
+            bool check = true;
+            var menuDetails = context.MenuDetails.Where(md => md.MenuId == menuId);
+            foreach (var element in menuDetails)
+                if (element.RecipeId == recipeId)
+                {
+                    check = false;
+                }
+
+            return check;
         }
     }
 }
