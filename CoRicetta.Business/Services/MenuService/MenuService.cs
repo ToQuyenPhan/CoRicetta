@@ -4,6 +4,7 @@ using CoRicetta.Data.Repositories.MenuRepo;
 using CoRicetta.Data.ViewModels.Menus;
 using CoRicetta.Data.ViewModels.Paging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CoRicetta.Business.Services.MenuService
@@ -105,6 +106,39 @@ namespace CoRicetta.Business.Services.MenuService
                 throw new UnauthorizedAccessException("You do not have permission to do this action!");
             }
             await _menuDetailRepo.AddRecipe(menuId, recipeId);
+        }
+
+        public async Task<List<ViewMenu>> GetWithUserIdExceptRecipeAdded(string token, int userId, int recipeId)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            List<ViewMenu> menus = await _menuRepo.GetWithUserIdExceptRecipeAdded(userId, recipeId);
+            return menus;
+        }
+
+        public async Task<bool> canAddRecipe(int menuId, int recipeId, string token)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to do this action!");
+            }
+            return await _menuRepo.canAddRecipe(menuId, recipeId);
+        }
+
+        public async Task<PagingResultViewModel<ViewMenu>> GetWithUserId(string token, MenuFilterRequestModel request)
+        {
+            string role = _decodeToken.DecodeText(token, "Role");
+            if (role.Equals("ADMIN"))
+            {
+                throw new UnauthorizedAccessException("You do not have permission to access this resource!");
+            }
+            PagingResultViewModel<ViewMenu> menus = await _menuRepo.GetWithUserId(request);
+            if (menus.Items == null) throw new NullReferenceException("Not found any menus");
+            return menus;
         }
     }
 }

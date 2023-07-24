@@ -152,5 +152,73 @@ namespace CoRicetta.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("canAddRecipeToMenu")]
+        [SwaggerOperation(Summary = "Can I Add recipe to menu in CoRicetta?")]
+        public async Task<ActionResult<bool>> canAddRecipe([FromQuery] int menuId, [FromQuery] int recipeId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var check = await _menuService.canAddRecipe(menuId, recipeId, token);
+                return Ok(check);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("allByUserIdExceptRecipeAdded")]
+        [SwaggerOperation(Summary = "Get all menu by userid except recipe added in CoRicetta")]
+        public async Task<IActionResult> GetWithUserIdExceptRecipeAdded([FromQuery] int userId, int recipeId)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var menus = await _menuService.GetWithUserIdExceptRecipeAdded(token, userId, recipeId);
+                return Ok(menus);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("allByUserId")]
+        [SwaggerOperation(Summary = "Get all menu by userId in CoRicetta")]
+        public async Task<IActionResult> GetWithUserId([FromQuery] MenuFilterRequestModel request)
+        {
+            try
+            {
+                string token = (Request.Headers)["Authorization"].ToString().Split(" ")[1];
+                var menus = await _menuService.GetWithUserId(token, request);
+                return Ok(menus);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (NullReferenceException)
+            {
+                return Ok(new List<object>());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
