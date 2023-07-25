@@ -124,7 +124,6 @@ namespace CoRicetta.Data.Repositories.MenuRepo
         {
             List<MenuDetail> menuExcepts = GetMenuIdExcept(recipeId);
             var query = from m in context.Menus
-                        where (m.Status.Equals(1))
                         select m;
             query = query.Where(selector => selector.UserId.Equals(userId));
             foreach (var item in menuExcepts)

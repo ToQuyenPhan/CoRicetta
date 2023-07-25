@@ -60,21 +60,20 @@ namespace CoRicetta.Business.Services.ReportService
             if (reports.Items == null) throw new NullReferenceException("Not found any reports");
             foreach (var report in reports.Items)
             {
-                //switch (report.Status.ToString())
-                //{
-                //    case "Waiting":
-                //        report.Status = "Đang đợi";
-                //        break;
-                //    case "Approved":
-                //        report.Status = "Đã xét duyệt";
-                //        break;
-                //    case "Rejected":
-                //        report.Status = "Đã từ chối";
-                //        break;
-                //    default:
-                //        break;
-                //}
-                report.Status = "Đang đợi";
+                switch (report.Status.ToString())
+                {
+                    case "Waiting":
+                        report.Status = "Đang đợi";
+                        break;
+                    case "Approved":
+                        report.Status = "Đã xét duyệt";
+                        break;
+                    case "Rejected":
+                        report.Status = "Đã từ chối";
+                        break;
+                    default:
+                        break;
+                }
             }
             return reports;
         }
@@ -88,7 +87,7 @@ namespace CoRicetta.Business.Services.ReportService
             }
             ViewReport report = await _reportRepo.FindReport(model);
             if (report == null) throw new NullReferenceException("Not found any reports");
-            switch (report.Status.ToString())
+            switch (report.Status)
             {
                 case "Waiting":
                     report.Status = "Đang đợi";

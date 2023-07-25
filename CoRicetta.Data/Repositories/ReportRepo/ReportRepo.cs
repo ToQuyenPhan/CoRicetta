@@ -34,7 +34,6 @@ namespace CoRicetta.Data.Repositories.ReportRepo
             var query = from rp in context.Reports
                         join u in context.Users on rp.UserId equals u.Id
                         join rc in context.Recipes on rp.RecipeId equals rc.Id
-                        where rp.Status.Equals((int)ReportStatus.Waiting)
                         select new { rp, u, rc };
             int totalCount = query.Count();
             List<ViewReport> items = await query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize)
